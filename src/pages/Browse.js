@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Container, Form, FormGroup, Input, Label } from "reactstrap";
 import Navigation from "../components/Navigation"
 
@@ -8,7 +8,8 @@ function Browse() {
 
     const handleSearch = (event) => {
         event.preventDefault();
-        console.log(event.target.querySelector('input').value)
+        console.log(document.getElementById('searchInput').value)
+        console.log(document.getElementById('selectInput').value)
     }
 
 
@@ -25,6 +26,14 @@ function Browse() {
                     id="searchInput"
                     placeholder="search placeholder"
                 />
+                <Input onChange={handleSearch} type="select" name="select" id="selectInput">
+                    <option>All</option>
+                    <option>Breakfast</option>
+                    <option>Lunch</option>
+                    <option>Dinner</option>
+                    <option>Appitizer</option>
+                    <option>Dessert</option>
+                </Input>
             </Form>
 
         </Container>
