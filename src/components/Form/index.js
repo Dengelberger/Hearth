@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
+import { Button } from "reactstrap";
 
 class Form extends Component {
   // Setting the component's initial state
@@ -52,7 +53,7 @@ class Form extends Component {
             type="text"
             placeholder="Last Name"
           />
-          <button onClick={this.handleFormSubmit}>Submit</button>
+          <Button color="primary" onClick={this.handleFormSubmit}>Submit</Button>
         </form>
       </div>
     );
