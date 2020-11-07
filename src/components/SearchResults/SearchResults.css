@@ -1,0 +1,16 @@
+.search {
+    padding-top: 8px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px;
+}
+
+.search:hover {
+    background-color: lightcyan;
+}
+
+.picture {
+    margin-left: 8px;
+    width: 220px;
+    height: 150px;
+    object-fit: cover;
+}
