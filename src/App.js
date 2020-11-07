@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Search from "./pages/Browse";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
+import Recipe from "./pages/Recipe";
 
 function App() {
   return <BrowserRouter>
@@ -16,6 +17,9 @@ function App() {
       </Route>
       <Route path="/browse">
         <Search />
+      </Route>
+      <Route path="/recipe/:id">
+        <Recipe />
       </Route>
       <Route path="/">
         <Welcome />

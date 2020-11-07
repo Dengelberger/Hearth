@@ -33,7 +33,7 @@ function Browse() {
 
     const handleRecipeClick = (event) => {
         console.log(event.currentTarget.id)
-        location.href = ('/recipes/'+event.currentTarget.id);
+        location.href = ('/recipe/'+event.currentTarget.id);
     }
 
 
