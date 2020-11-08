@@ -18,7 +18,7 @@ const Navigation = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // This is a placeholder for passport is loggin?
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -31,6 +31,9 @@ const Navigation = (props) => {
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink href="/browse/">Browse</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/builder/">Recipe Builder</NavLink>
             </NavItem>
           </Nav>
           {isLoggedIn ?

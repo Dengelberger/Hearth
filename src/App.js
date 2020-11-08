@@ -5,6 +5,7 @@ import Search from "./pages/Browse";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
 import Recipe from "./pages/Recipe";
+import Builder from "./pages/Builder";
 
 function App() {
   return <BrowserRouter>
@@ -20,6 +21,9 @@ function App() {
       </Route>
       <Route path="/recipe/:id">
         <Recipe />
+      </Route>
+      <Route path="/builder">
+        <Builder />
       </Route>
       <Route path="/">
         <Welcome />
