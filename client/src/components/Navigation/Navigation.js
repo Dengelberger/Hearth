@@ -33,7 +33,7 @@ const Navigation = (props) => {
               <NavLink href="/browse/">Browse</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/builder/">Recipe Builder</NavLink>
+              <NavLink href="/builder">Recipe Builder</NavLink>
             </NavItem>
           </Nav>
           {isLoggedIn ?
