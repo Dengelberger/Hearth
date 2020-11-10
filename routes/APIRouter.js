@@ -4,6 +4,7 @@ const homeCook = require("../controllers/HomeCookController");
 const recipe = require("../controllers/RecipeController");
 const memory = require("../controllers/MemoryController");
 
+
 // USER ROUTES:
 
 // Matches with "/api/user"
@@ -62,7 +63,7 @@ router.route("/")
 // Delete a recipe photo
 // Delete a recipe ingredient list
 // Delete a recipe instructions
-.delete(recipe.remove)
+.delete(recipe.remove);
 
 // MEMORY ROUTES:
 
@@ -76,11 +77,50 @@ router.route("/")
 // Update a memory text
 .put(memory.update)
 // Delete a memory
-.delete(memory.remove)
+.delete(memory.remove);
+
+//================================================
+// CLOUDINARY AJAX CALL
+//=================================================
+// function getPictures () {
+
+//   var queryURL = "cloudinary://927986391515486:gLoe4LZ7yTVPZmdyJC9Pz-HrlOQ@dofb2p06j";
+
+//   // AJAX CALL FOR CLOUDINARY PICTURES
+//   $.ajax({
+//     url: queryURL,
+//     method: "GET"
+//   }).then(function (pictureData) {
+
+//     console.log(pictureData);
+
+
+// });
+
+// }
 
 module.exports = router;
+//================================================
+//CLOUDINARY CRUD METHODS:
+
+// GET /resources/image
+// Cloudinary::Api.resources
+
+// GET /resources/image/upload/?prefix=sample
+// Cloudinary::Api.resources(
+//  :type => :upload,
+//  :prefix => "sample")
+
+// Cloudinary::Uploader.rename('old_name', 'new_name')
+
+// Cloudinary::Uploader.destroy('sample')
+
+// Cloudinary::Api.delete_resources(['image1', 'image2'])
+
+// Cloudinary::Api.delete_resources_by_prefix('sunday')
 
 
+//======================================================
 // SAMPLE CODE FROM REVIEW:
 
 // router.get("/recipes", (req, res) => {
