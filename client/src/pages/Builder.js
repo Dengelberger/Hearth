@@ -15,6 +15,10 @@ function Builder() {
     const [instructionArr, setInstructionArr] = useState([0]);
     const [selectedFile, setSelectedFile] = useState();
     const [cookPicture, setCookPicture] = useState("https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg")
+    const [mainPicture, setMainPicture] = useState("https://via.placeholder.com/350x150")
+    const [secondPicture, setSecondPicture] = useState("https://via.placeholder.com/150x150")
+    const [thirdPicture, setThirdPicture] = useState("https://via.placeholder.com/150x150")
+
 
     const handleSelect = (event) => {
         if (event.target.value === "Add a Homecook") {
@@ -44,10 +48,10 @@ function Builder() {
         let allRecipePictures = document.querySelectorAll(".recipePicture")
         allRecipePictures.forEach(item => recipePictures.push(item.src))
 
-        let newRecipe = { title: event.target.title.value, home_cook_id: document.querySelector("#homecookSelect").value, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures}
+        let newRecipe = { title: event.target.title.value, home_cook_id: document.querySelector("#homecookSelect").value, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures }
         console.log(newRecipe)
 
-        // add newHomecook to database and refresh the page
+        // add recipe to database and refresh the page
     }
 
     const addInstruction = (event) => {
@@ -63,34 +67,61 @@ function Builder() {
         instructionArr.splice(1, 1)
         console.log(instructionArr);
         setInstructionCount(instructionCount + 1)
-        
+
     }
 
     const handleUpload = async (event) => {
         event.preventDefault();
 
-        console.log(event.target.name)
-        if(!selectedFile){
+        let pictureid = event.target.name
+
+        if (!selectedFile) {
             return
         } else {
             console.log(selectedFile)
-            axios.post("/api/upload", {data: selectedFile}).then(res => {
+            axios.post("/api/upload", { data: selectedFile }).then(res => {
                 console.log(res.data.url)
-                setCookPicture(res.data.url)
-            }).catch(err => {console.log(err)});
-        }
+                if (pictureid === "homecookPicture") {
+                    setCookPicture(res.data.url)
+                }
 
+            }).catch(err => { console.log(err) });
+        }
     }
 
-    const handlePictureChange = (event) => {
+    const handlePictureChange = async (event) => {
         event.preventDefault();
-        console.log(event.target.files[0])
-        if(!event.target.files[0]){return}
+        let pictureid = event.target.name
+        console.log(pictureid)
+
+        if (!event.target.files[0]) { return }
         const reader = new FileReader();
         reader.readAsDataURL(event.target.files[0])
-        reader.onloadend = ()=> {
-            setSelectedFile(reader.result)
+        reader.onloadend = () => {
+            console.log(reader.result)
+            axios.post("/api/upload", { data: reader.result }).then(res => {
+                console.log(res.data.url)
+                switch (pictureid) {
+                    case "homecookPicture":
+                        setCookPicture(res.data.url)
+                        break;
+                    case "mainPicture":
+                        setMainPicture(res.data.url)
+                        break;
+                    case "secondPicture":
+                        setSecondPicture(res.data.url)
+                        break;
+                    case "thirdPicture":
+                        setThirdPicture(res.data.url)
+                        break;
+    
+                    default:
+                        break;
+                }
+    
+            }).catch(err => { console.log(err) });
         }
+
     }
 
     return <>
@@ -115,7 +146,7 @@ function Builder() {
                         <Input type="textarea" name="bio" id="cookBio" />
                     </FormGroup>
                     <div>Picture</div>
-                    <img style={{width : "150px"}} id="homecookPicture" name="preview" src={cookPicture}></img>
+                    <img style={{ width: "150px" }} id="homecookPicture" name="preview" src={cookPicture}></img>
                     <div>
                         <Input onChange={handlePictureChange} type="file" name="homecookPicture" id="cookPicture" />
                         <Button onClick={handleUpload} name="homecookPicture" type="button">Upload</Button>
@@ -129,10 +160,10 @@ function Builder() {
                         <Label for="title">Recipe Title:</Label>
                         <Input type="text" name="title" id="recipeTitle" placeholder="Recipe Title" />
                     </FormGroup>
-                    <img name="preview" src="https://via.placeholder.com/350x150"></img>
+                    <img name="preview" src={mainPicture}></img>
                     <FormGroup>
                         <Label for="picture">Main Picture</Label>
-                        <Input type="file" name="picture" id="mainPicture" />
+                        <Input onChange={handlePictureChange} type="file" name="mainPicture" id="mainPicture" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="recipeCatagory">Catagory</Label>
@@ -146,27 +177,27 @@ function Builder() {
                         </Input>
                     </FormGroup>
                     <FormGroup>
-                            <Label for="ingredients">Ingredients</Label>
-                            <Input type="textarea" name="ingredients" />
-                            <FormText color="muted">
-                                Please separate each ingredient with a new line (ENTER⏎)
+                        <Label for="ingredients">Ingredients</Label>
+                        <Input type="textarea" name="ingredients" />
+                        <FormText color="muted">
+                            Please separate each ingredient with a new line (ENTER⏎)
                             </FormText>
                     </FormGroup>
                     <Label for="instructions">Instructions</Label>
-                    {instructionArr.map((item , index) => <InstructionForm key={index} number={index +1} />)}
+                    {instructionArr.map((item, index) => <InstructionForm key={index} number={index + 1} />)}
                     <div>
                         <Button color="primary" onClick={addInstruction}>+</Button>
                         <Button color="danger" onClick={removeInstruction}>X</Button>
                     </div>
-                    <img className="recipePicture" name="preview2" src="https://via.placeholder.com/150x150"></img>
+                    <img className="recipePicture" name="preview2" src={secondPicture}></img>
                     <FormGroup>
                         <Label for="secondPicture">Original Recipe Picture</Label>
-                        <Input type="file" name="secondPicture" id="secondPicture" />
+                        <Input onChange={handlePictureChange} type="file" name="secondPicture" id="secondPicture" />
                     </FormGroup>
-                    <img className="recipePicture" name="preview3" src="https://via.placeholder.com/150x150"></img>
+                    <img className="recipePicture" name="preview3" src={thirdPicture}></img>
                     <FormGroup>
                         <Label for="thirdPicture">Additional Picture</Label>
-                        <Input type="file" name="thirdPicture" id="thirdPicture" />
+                        <Input onChange={handlePictureChange} type="file" name="thirdPicture" id="thirdPicture" />
                     </FormGroup>
                     <Button type="submit">SUBMIT</Button>
                 </Form>

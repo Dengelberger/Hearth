@@ -23,7 +23,6 @@ app.post('/api/upload', async (req,res) => {
   // console.log(req.body)
   try{
     const fileStr = req.body.data;
-    console.log(fileStr)
 
     const uploadedResponse = await cloudinary.uploader.upload(fileStr, { folder: "Hearth/" })
     console.log(uploadedResponse);
@@ -33,8 +32,8 @@ app.post('/api/upload', async (req,res) => {
   }
 })
 
-// // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hearth");
 
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
