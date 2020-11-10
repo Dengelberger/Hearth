@@ -49,7 +49,7 @@ router.route("/")
 // Search for a recipe by title
 // Search for a recipe by category
 // Search for a recipe by home cook
-.get(recipe.FindAll)
+.get(recipe.findAll)
 // Update a recipe title
 // Update a recipe home cook id
 // Update a recipe category
@@ -72,7 +72,7 @@ router.route("/")
 // Create a memory title, text, and recipe id
 .post(memory.create)
 //Search for a memory for a certain recipe
-.get(memory.FindAll)
+.get(memory.findAll)
 // Update a memory title
 // Update a memory text
 .put(memory.update)

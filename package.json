@@ -20,6 +20,7 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "cloudinary": "^1.23.0",
     "cloudinary-react": "^1.6.7",
     "dotenv": "^8.2.0",
