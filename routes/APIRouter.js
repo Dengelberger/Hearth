@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const user = require("../controller/UserController");
+const user = require("../controllers/UserController");
 const homeCook = require("../controllers/HomeCookController");
-const recipe = require("../controllers/Recipe");
-const memory = require("../controllers/Memory");
+const recipe = require("../controllers/RecipeController");
+const memory = require("../controllers/MemoryController");
 
 // USER ROUTES:
 

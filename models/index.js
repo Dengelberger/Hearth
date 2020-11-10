@@ -1,6 +1,6 @@
 module.exports = {
-	Users: require("./User"),
-	HomeCooks: require("./HomeCook"),
-	Recipes: require("./Recipe"),
-	Memories: require("./Memory")
+	User: require("./User"),
+	HomeCook: require("./HomeCook"),
+	Recipe: require("./Recipe"),
+	Memory: require("./Memory")
 };
