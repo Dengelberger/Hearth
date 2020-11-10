@@ -18,7 +18,7 @@ const Navigation = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // This is a placeholder for passport is loggin?
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 

@@ -4,12 +4,17 @@ import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import Navigation from "../components/Navigation"
 import InstructionForm from "../components/InstructionForm"
 import { FormText } from "reactstrap";
+import axios from "axios";
+require('dotenv').config();
+
 
 function Builder() {
 
     const [isOpen, setIsOpen] = useState(false);
     const [instructionCount, setInstructionCount] = useState(1)
     const [instructionArr, setInstructionArr] = useState([0]);
+    const [selectedFile, setSelectedFile] = useState();
+    const [cookPicture, setCookPicture] = useState("https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg")
 
     const handleSelect = (event) => {
         if (event.target.value === "Add a Homecook") {
@@ -39,16 +44,6 @@ function Builder() {
         let allRecipePictures = document.querySelectorAll(".recipePicture")
         allRecipePictures.forEach(item => recipePictures.push(item.src))
 
-
-        // console.log(event.target.title.value)
-        // console.log(document.querySelector("#homecookSelect").value)
-        // console.log(event.target.catagory.value)
-        // console.log(event.target.preview.src)
-        // console.log(ingredients)
-        // console.log(instructions)
-        // console.log(recipePictures)
-
-
         let newRecipe = { title: event.target.title.value, home_cook_id: document.querySelector("#homecookSelect").value, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures}
         console.log(newRecipe)
 
@@ -69,6 +64,33 @@ function Builder() {
         console.log(instructionArr);
         setInstructionCount(instructionCount + 1)
         
+    }
+
+    const handleUpload = async (event) => {
+        event.preventDefault();
+
+        console.log(event.target.name)
+        if(!selectedFile){
+            return
+        } else {
+            console.log(selectedFile)
+            axios.post("/api/upload", {data: selectedFile}).then(res => {
+                console.log(res.data.url)
+                setCookPicture(res.data.url)
+            }).catch(err => {console.log(err)});
+        }
+
+    }
+
+    const handlePictureChange = (event) => {
+        event.preventDefault();
+        console.log(event.target.files[0])
+        if(!event.target.files[0]){return}
+        const reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0])
+        reader.onloadend = ()=> {
+            setSelectedFile(reader.result)
+        }
     }
 
     return <>
@@ -92,11 +114,12 @@ function Builder() {
                         <Label for="bio">Biography</Label>
                         <Input type="textarea" name="bio" id="cookBio" />
                     </FormGroup>
-                    <img name="preview" src="https://via.placeholder.com/150x150"></img>
-                    <FormGroup>
-                        <Label for="picture">Picture</Label>
-                        <Input type="file" name="picture" id="cookPicture" />
-                    </FormGroup>
+                    <div>Picture</div>
+                    <img style={{width : "150px"}} id="homecookPicture" name="preview" src={cookPicture}></img>
+                    <div>
+                        <Input onChange={handlePictureChange} type="file" name="homecookPicture" id="cookPicture" />
+                        <Button onClick={handleUpload} name="homecookPicture" type="button">Upload</Button>
+                    </div>
                     <Button type="submit">Submit</Button>
                 </Form>
             </Collapse>
