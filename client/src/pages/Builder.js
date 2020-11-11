@@ -51,8 +51,12 @@ function Builder() {
         let allRecipePictures = document.querySelectorAll(".recipePicture")
         allRecipePictures.forEach(item => recipePictures.push(item.src))
 
-        let newRecipe = { title: event.target.title.value, home_cook_id: document.querySelector("#homecookSelect").value, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures }
+        let newRecipe = { title: event.target.title.value, home_cook_id: 1, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures }
         console.log(newRecipe)
+        axios.post("/api/recipe", newRecipe).then(res => {
+            console.log(res)
+        }).catch(err => { console.log(err) });
+
 
         // add recipe to database and refresh the page
     }
