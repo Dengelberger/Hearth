@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes/APIRouter");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const db = require("./models");
 
 const { cloudinary } = require("./client/src/utils/cloudinary")
 
@@ -16,25 +17,35 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-app.use(routes);
+// app.use(routes);
 
 app.post('/api/upload', async (req,res) => {
   console.log("yay")
   // console.log(req.body)
   try{
     const fileStr = req.body.data;
-    console.log(fileStr)
 
     const uploadedResponse = await cloudinary.uploader.upload(fileStr, { folder: "Hearth/" })
-    console.log(uploadedResponse);
     res.json(uploadedResponse)
   } catch (error) {
     console.error(error)
   }
 })
 
-// // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
+app.post('/api/homecook', (req,res) => {
+  console.log("WAHOO")
+  // console.log(req.body)
+  db.HomeCook.create(req.body, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    };
+  });
+})
+
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hearth");
 
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
