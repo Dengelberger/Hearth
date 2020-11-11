@@ -20,6 +20,7 @@ module.exports = {
 	create: (req, res) => {
 		db.HomeCook
 			.create(req.body)
+			console.log("from controller" + req.body)
 			.then(postData => {
 			  res.json(postData)
 			})

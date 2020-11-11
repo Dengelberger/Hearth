@@ -11,7 +11,7 @@ const userSeeder  = [
     password: "mysecretpw1234",
     first_name: "Donna",
     last_name: "Engelberger",
-    picture: "https://res.cloudinary.com/dofb2p06j/image/upload/v1604608956/MyBioPic2_aw0aps.jpg",
+    picture: 'http://res.cloudinary.com/desmvec4u/image/upload/v1605029781/IMG_20201107_080210487.jpg',
     homecooks: Array,
     favorited: Array,
     date: new Date(Date.now())

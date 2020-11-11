@@ -44,6 +44,17 @@ app.post('/api/homecook', (req,res) => {
   });
 })
 
+app.post('/api/recipe', (req,res) => {
+  console.log("WEEEEE!")
+  // console.log(req.body)
+  db.Recipe.create(req.body, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    };
+  });
+})
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hearth");
 
