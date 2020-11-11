@@ -5,7 +5,19 @@ import { useParams } from "react-router-dom"
 import RecipeDisplay from "../components/RecipeDisplay";
 
 function Recipe() {
+
     let { id } = useParams();
+
+    useEffect(() => {
+        
+        axios.get("/api/user").then(res => {
+          console.log("USER DATA:")
+          console.log(res.data);
+      }).catch(err => { console.log(err) });
+      
+      }, []);
+
+    
 
 
     return <>

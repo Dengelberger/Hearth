@@ -14,9 +14,9 @@ function Login() {
         console.log(loginUser)
         axios.post("/api/login", loginUser).then(res => {
             console.log(res)
+            // window.location.href = "/browse"
         }).catch(err => { console.log(err) });
     }
-
 
     return <>
         <Navigation />

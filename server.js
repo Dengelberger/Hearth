@@ -89,7 +89,7 @@ app.post("/api/register", (req, res) => {
   });
 });
 
-app.get("/user", (req, res) => {
+app.get("/api/user", (req, res) => {
   res.send(req.user); 
 });
 
