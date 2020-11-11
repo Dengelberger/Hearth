@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Collapse } from "reactstrap";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
@@ -57,7 +58,6 @@ function Builder() {
         let recipePictures = []
         let allRecipePictures = document.querySelectorAll(".recipePicture")
         allRecipePictures.forEach(item => recipePictures.push(item.src))
-
         
         let newRecipe = { title: event.target.title.value, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures }
         console.log(newRecipe)
