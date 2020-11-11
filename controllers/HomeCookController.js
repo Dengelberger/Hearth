@@ -2,6 +2,7 @@ const db = require("../models");
 
 module.exports = {
 	findAll: (req, res) => {
+		console.log("WOOT!");
 		db.HomeCook
 			.find({})
 			.then(postData => {
@@ -18,12 +19,13 @@ module.exports = {
 			.catch(err => console.log(err));
 	},
 	create: (req, res) => {
+		console.log("from controller" + req.body)
 		db.HomeCook
 			.create(req.body)
-			console.log("from controller" + req.body)
 			.then(postData => {
-			  res.json(postData)
+				res.json(postData)
 			})
+
 			.catch(err => console.log(err));
 	},
 	update: (req, res) => {

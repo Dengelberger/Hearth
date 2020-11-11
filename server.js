@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const bodyParser = require("body-parser");
-// const routes = require("./routes/APIRouter");
+const routes = require("./routes/APIRouter");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const db = require("./models");
@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-// app.use(routes); needs to be uncommented
+app.use(routes);
 
 // LOGIN ROUTES____________________
 
@@ -94,7 +94,7 @@ app.get("/user", (req, res) => {
 });
 
 
-// API ROUTES______________________
+// API ROUTES FOR CLOUDINARY / IMAGE UPLOADS
 app.post('/api/upload', async (req,res) => {
   console.log("yay")
   // console.log(req.body)
@@ -107,41 +107,8 @@ app.post('/api/upload', async (req,res) => {
     console.error(error)
   }
 })
-app.get('/api/homecook', (req,res) => {
-  console.log("GOT IT!")
-  // console.log(req.body)
-  db.HomeCook.find(req.body, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(data);
-    };
-  });
-})
+//====================================================
 
-app.post('/api/homecook', (req,res) => {
-  console.log("WAHOO")
-  // console.log(req.body)
-  db.HomeCook.create(req.body, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(data);
-    };
-  });
-})
-
-app.post('/api/recipe', (req,res) => {
-  console.log("WEEEEE!")
-  // console.log(req.body)
-  db.Recipe.create(req.body, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(data);
-    };
-  });
-})
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hearth");
 

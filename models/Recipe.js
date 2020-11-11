@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const RecipeSchema = new Schema({
-	_id: Schema.Types.ObjectId,
 	created_by: {
 		type: Schema.Types.ObjectId,
 		ref: "User"
@@ -30,10 +29,10 @@ const RecipeSchema = new Schema({
 	ingredients: Array,
 	instructions: Array,
 	is_private: Boolean,
-	memories: {
+	memories: [{
 		type: Schema.Types.ObjectId,
 		ref: "Memory"
-	}
+	}]
 });
 
 const Recipe = mongoose.model("Recipe", RecipeSchema);

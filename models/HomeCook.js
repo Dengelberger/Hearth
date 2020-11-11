@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const HomeCookSchema = new Schema({
-	_id: Schema.Types.ObjectId,
 	name: String,
 	created_by: {
 		type: Schema.Types.ObjectId,
