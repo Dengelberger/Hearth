@@ -16,6 +16,7 @@ router.route("/")
   // Search for user by full name (JOIN)
   // Search all users by full name (JOIN)
   .get(user.findAll)
+  // db.getCollection('users').find({})
   // Update a user password
   // Update a user picture
   // Update user list of home cooks
@@ -32,6 +33,7 @@ router.route("/")
   .post(homeCook.create)  //DONE ON SERVER.JS
   // Search for a home cook by name
   .get(homeCook.findAll)
+  // db.getCollection('homecooks').find({})
   // // Update a home cook name
   // // Update a home cook picture
   // // Update a home cook bio
@@ -50,6 +52,7 @@ router.route("/")
   // Search for a recipe by category
   // Search for a recipe by home cook
   .get(recipe.findAll)
+  // db.getCollection('recipes').find({})
   // Update a recipe title
   // Update a recipe home cook id
   // Update a recipe category
@@ -73,6 +76,7 @@ router.route("/")
   .post(memory.create)
   //Search for a memory for a certain recipe
   .get(memory.findAll)
+  // db.getCollection('memories').find({})
   // Update a memory title
   // Update a memory text
   .put(memory.update)

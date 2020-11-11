@@ -107,6 +107,17 @@ app.post('/api/upload', async (req,res) => {
     console.error(error)
   }
 })
+app.get('/api/homecook', (req,res) => {
+  console.log("GOT IT!")
+  // console.log(req.body)
+  db.HomeCook.find(req.body, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    };
+  });
+})
 
 app.post('/api/homecook', (req,res) => {
   console.log("WAHOO")

@@ -29,6 +29,10 @@ function Browse() {
             newSearch = newSearch.filter(item => item.catagory === selectTerm);
         };
         setSearchedList(newSearch);
+        axios.get("/api/homecook", newSearch).then(res => {
+            console.log(res)
+        }).catch(err => { console.log(err) });
+
     }
 
     const handleRecipeClick = (event) => {
