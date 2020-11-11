@@ -17,6 +17,8 @@ const { cloudinary } = require("./client/src/utils/cloudinary")
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -44,8 +46,12 @@ if (process.env.NODE_ENV === "production") {
 
 // LOGIN ROUTES____________________
 
-app.post("/login", (req, res, next) => {
+app.post("/api/login", (req, res, next) => {
+  console.log(req.body.username)
+  console.log(req.body.password)
   passport.authenticate("local", (err, user, info) => {
+    console.log(err + " + " + user + " + " + info);
+    console.log(JSON.stringify(info))
     if (err) throw err;
     if (!user) res.send("No User Exists");
     else {
