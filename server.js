@@ -11,6 +11,7 @@ const routes = require("./routes/APIRouter");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const db = require("./models");
+const MongoStore = require('connect-mongo')(session);
 
 const { cloudinary } = require("./client/src/utils/cloudinary")
 
@@ -25,13 +26,7 @@ app.use(
     credentials: true,
   })
 );
-app.use(
-  session({
-    secret: "funinthesun",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+
 app.use(cookieParser("funinthesun"));
 app.use(passport.initialize()); 
 app.use(passport.session()); 
@@ -50,15 +45,16 @@ app.post("/api/login", (req, res, next) => {
   console.log(req.body.username)
   console.log(req.body.password)
   passport.authenticate("local", (err, user, info) => {
-    console.log(err + " + " + user + " + " + info);
-    console.log(JSON.stringify(info))
+    // console.log(err + " + " + user + " + " + info);
+    // console.log(JSON.stringify(info))
     if (err) throw err;
     if (!user) res.send("No User Exists");
     else {
       req.logIn(user, (err) => {
         if (err) throw err;
-        res.send("Successfully Authenticated");
+        console.log("look here");
         console.log(req.user);
+        res.send("Successfully Authenticated");
       });
     }
   })(req, res, next);
@@ -89,9 +85,20 @@ app.post("/api/register", (req, res) => {
   });
 });
 
-app.get("/api/user", (req, res) => {
-  res.send(req.user); 
-});
+// app.get("/api/user", (req, res, next) => {
+//   console.log("some text")
+//   res.send(req); 
+// });
+
+app.get('/api/user', (req, res, next) => {
+  console.log('===== user!!======')
+  console.log(req.user)
+  if (req.user) {
+      res.json({ user: req.user })
+  } else {
+      res.json({ user: null })
+  }
+})
 
 
 // API ROUTES FOR CLOUDINARY / IMAGE UPLOADS
@@ -111,6 +118,15 @@ app.post('/api/upload', async (req,res) => {
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hearth");
+
+app.use(
+  session({
+    secret: "funinthesun",
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));

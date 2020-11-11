@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,  } from "react";
 import { Collapse } from "reactstrap";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import Navigation from "../components/Navigation"
@@ -51,7 +51,7 @@ function Builder() {
         let allRecipePictures = document.querySelectorAll(".recipePicture")
         allRecipePictures.forEach(item => recipePictures.push(item.src))
 
-        let newRecipe = { title: event.target.title.value, home_cook_id: 1, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures }
+        let newRecipe = { title: event.target.title.value, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures }
         console.log(newRecipe)
         axios.post("/api/recipe", newRecipe).then(res => {
             console.log(res)
@@ -137,7 +137,7 @@ function Builder() {
             <h1>Recipe Builder</h1>
             <h4>Homecook:</h4>
             <Input onChange={handleSelect} type="select" name="select" id="homecookSelect">
-                <option>Karin Stubbs</option>
+                <option name="id">Karin Stubbs</option>
                 <option>Auntie Polly</option>
                 <option>Keith Jones</option>
                 <option>Add a Homecook</option>

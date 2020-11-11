@@ -1,28 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "reactstrap";
 import Navigation from "../components/Navigation"
 import { useParams } from "react-router-dom"
 import RecipeDisplay from "../components/RecipeDisplay";
+import axios from "axios"
 
 function Recipe() {
+
+    const [thisRecipe, setThisRecipe] = useState({});
 
     let { id } = useParams();
 
     useEffect(() => {
-        
-        axios.get("/api/user").then(res => {
-          console.log("USER DATA:")
-          console.log(res.data);
-      }).catch(err => { console.log(err) });
-      
-      }, []);
 
-    
+        axios.get("/api/recipe/" + id).then(res => {
+            console.log("Recipe DATA:")
+            console.log(res.data);
+            setThisRecipe(res.data);
+        }).catch(err => { console.log(err) });
+
+    }, []);
+
+
 
 
     return <>
         <Navigation />
-        <RecipeDisplay id={id}/>
+        <RecipeDisplay  recipe={thisRecipe}/>
     </>
 }
 

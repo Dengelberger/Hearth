@@ -3,6 +3,7 @@ import { Container, Form, FormGroup, Input, Label } from "reactstrap";
 import Navigation from "../components/Navigation"
 import SearchResults from "../components/SearchResults";
 import masterList from "../recipeExample.json"
+import axios from "axios"
 
 function Browse() {
     const [publicList, setPublicList] = useState({});
@@ -11,7 +12,13 @@ function Browse() {
     // const [search, setSearch] = useState("");
     // const [select, setSelect] = useState("All");
 
-    React.useEffect(() => publicOnly(masterList), [])
+    React.useEffect(() => {
+        axios.get("/api/recipe").then(res => {
+            console.log("Recipe DATA:")
+            console.log(res.data);
+            setPublicList(res.data);
+        }).catch(err => { console.log(err) });
+    }, [])
 
     const publicOnly = (list) => {
         let publicList = list.filter(item => item.is_private === false);
@@ -24,7 +31,8 @@ function Browse() {
         let selectTerm = document.getElementById('selectInput').value;
         console.log(searchTerm);
         console.log(selectTerm);
-        let newSearch = publicList.filter(item => item.title.toLowerCase().includes((searchTerm).toLowerCase()) || item.homecook.toLowerCase().includes((searchTerm).toLowerCase()))
+        let newSearch = publicList.filter(item => item.title.toLowerCase().includes((searchTerm).toLowerCase()))
+        // || item.homecook.toLowerCase().includes((searchTerm).toLowerCase())
         if (selectTerm !== "All") {
             newSearch = newSearch.filter(item => item.catagory === selectTerm);
         };
@@ -37,7 +45,7 @@ function Browse() {
 
     const handleRecipeClick = (event) => {
         console.log(event.currentTarget.id)
-        location.href = ('/recipe/'+event.currentTarget.id);
+        location.href = ('/api/recipe/'+event.currentTarget.id);
     }
 
 
@@ -62,7 +70,7 @@ function Browse() {
                     <option>Dessert</option>
                 </Input>
             </Form>
-            {searchedList.length > 0 ? searchedList.map(item => <SearchResults id={item.id} picture={item.picture} title={item.title} homecook={item.homecook} catagory={item.catagory} handleRecipeClick={handleRecipeClick}/>): <p>no search results</p>}
+            {searchedList.length > 0 ? searchedList.map(item => <SearchResults id={item._id} picture={item.main_picture} title={item.title} homecook={item.homecook} category={item.category} handleRecipeClick={handleRecipeClick}/>): <p>no search results</p>}
 
         </Container>
     </>;

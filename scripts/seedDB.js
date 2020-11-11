@@ -7,7 +7,7 @@ mongoose.connect(
 
 const userSeeder = [
   {
-    username: "Deege",
+    email: "Deege",
     password: "mysecretpw1234",
     first_name: "Donna",
     last_name: "Engelberger",

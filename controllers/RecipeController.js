@@ -10,8 +10,9 @@ module.exports = {
 			.catch(err => console.log(err));
 	},
 	findById: (req, res) => {
+		console.log("finding by id")
 		db.Recipe
-			.findById(req.params.id)
+			.findById({_id : req.params.id})
 			.then(postData => {
 				res.json(postData)
 			})

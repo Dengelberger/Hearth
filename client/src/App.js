@@ -14,18 +14,10 @@ function App() {
 
 
   useEffect(() => {
-    axios({
-      method: "GET",
-      withCredentials: true,
-      url: "/api/user",
-    }).then((res) => {
-      // setData(res.data);
-      console.log(res.data);
-    });
-  //   axios.get("/api/user").then(res => {
-  //     console.log("USER DATA:")
-  //     console.log(res.data);
-  // }).catch(err => { console.log(err) });
+    axios.get("/api/user").then(res => {
+      console.log("USER DATA:")
+      console.log(res);
+  }).catch(err => { console.log(err) });
   }, []);
 
 
