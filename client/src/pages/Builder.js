@@ -32,8 +32,11 @@ function Builder() {
         event.preventDefault();
         let newHomecook = { name: event.target.name.value, bio: event.target.bio.value, picture: event.target.preview.src }
         console.log(newHomecook)
+        axios.post("/api/homecook", newHomecook).then(res => {
+            console.log(res)
+        }).catch(err => { console.log(err) });
 
-        // add newHomecook to database and refresh the page
+        
     }
 
     const handleRecipeAdd = (event) => {
