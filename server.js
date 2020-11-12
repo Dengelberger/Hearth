@@ -26,12 +26,10 @@ app.use(
 )
 app.use(bodyParser.json())
 
-// Passport
-app.use(passport.initialize())
-app.use(passport.session()) // calls the deserializeUser
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hearth");
+
 app.use(
   session({
     secret: 'funinthesun',
@@ -39,8 +37,11 @@ app.use(
     resave: false, //required
     saveUninitialized: false //required
   })
-);
-
+  );
+  
+  // Passport
+  app.use(passport.initialize())
+  app.use(passport.session()) // calls the deserializeUser
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -54,7 +55,6 @@ app.use(userRoutes)
 
 // API ROUTES FOR CLOUDINARY / IMAGE UPLOADS
 app.post('/api/upload', async (req, res) => {
-  console.log("yay")
   // console.log(req.body)
   try {
     const fileStr = req.body.data;

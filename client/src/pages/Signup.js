@@ -10,12 +10,12 @@ function Signup() {
         const newUser = {
             first_name: event.target.firstName.value,
             last_name: event.target.lastName.value,
-            email: event.target.email.value,
+            username: event.target.email.value,
             password: event.target.password.value
         }
         console.log(newUser)
         axios.post("/api/register", newUser).then(res => {
-            console.log(res)
+            console.log(res.data)
         }).catch(err => { console.log(err) });
     }
 

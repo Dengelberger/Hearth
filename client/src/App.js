@@ -7,6 +7,7 @@ import Welcome from "./pages/Welcome";
 import Recipe from "./pages/Recipe";
 import Builder from "./pages/Builder";
 import axios from "axios"
+import HomeCook from './pages/HomeCook';
 
 function App() {
   const [isUser, setIsUser] = useState(false);
@@ -14,12 +15,29 @@ function App() {
 
 
   useEffect(() => {
-    axios.get("/api/user").then(res => {
-      console.log("USER DATA:")
-      console.log(res);
-  }).catch(err => { console.log(err) });
+    getUser()
   }, []);
 
+  const getUser = () => {
+    axios.get('/api/user').then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('Get User: There is a user saved in the server session: ')
+
+        // this.setState({
+        //   loggedIn: true,
+        //   username: response.data.user.username
+        // })
+      } else {
+        console.log('Get user: no user');
+        // this.setState({
+        //   loggedIn: false,
+        //   username: null
+        // })
+      }
+    })
+  }
 
 
 
@@ -42,6 +60,9 @@ function App() {
       </Route>
       <Route path="/builder">
         <Builder />
+      </Route>
+      <Route path="/homecook/:id">
+        <HomeCook />
       </Route>
       <Route path="/">
         <Welcome />

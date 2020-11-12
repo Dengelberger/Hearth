@@ -13,7 +13,7 @@ function Login() {
         }
         console.log(loginUser)
         axios.post("/api/login", loginUser).then(res => {
-            console.log(res)
+            console.log(res.data)
             // window.location.href = "/browse"
         }).catch(err => { console.log(err) });
     }

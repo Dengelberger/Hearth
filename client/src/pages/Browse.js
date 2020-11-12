@@ -45,7 +45,7 @@ function Browse() {
 
     const handleRecipeClick = (event) => {
         console.log(event.currentTarget.id)
-        location.href = ('/api/recipe/'+event.currentTarget.id);
+        location.href = ('/recipe/'+event.currentTarget.id);
     }
 
 
