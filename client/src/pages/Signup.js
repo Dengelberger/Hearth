@@ -3,7 +3,7 @@ import { Container, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Navigation from "../components/Navigation"
 import axios from "axios"
 
-function Signup() {
+function Signup(props) {
 
     const handleSignup = (event) => {
         event.preventDefault();
@@ -22,7 +22,7 @@ function Signup() {
 
 
     return <>
-        <Navigation />
+        <Navigation user={props.user} />
         <Container>
             <h1>Signup</h1>
             <Form onSubmit={handleSignup}>

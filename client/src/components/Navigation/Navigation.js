@@ -13,14 +13,23 @@ import {
   DropdownItem,
   NavbarText
 } from 'reactstrap';
+import axios from 'axios'
 
 const Navigation = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // This is a placeholder for passport is loggin?
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setuser] = useState(props.user);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  const handleLogout = () => {
+    axios.post("/api/logout").then(res => {
+      console.log(res.data)
+      // window.location.href = "/browse"
+    }).catch(err => { console.log(err) })
+  }
+
+
 
   return (
     <div>
@@ -36,10 +45,10 @@ const Navigation = (props) => {
               <NavLink href="/builder">Recipe Builder</NavLink>
             </NavItem>
           </Nav>
-          {isLoggedIn ?
+          {props.user ?
             <UncontrolledDropdown inNavbar>
               <DropdownToggle nav caret>
-                Kevin
+                {props.user.first_name}
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
@@ -52,11 +61,11 @@ const Navigation = (props) => {
                   Add Recipe +
               </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>
+                <DropdownItem onClick={handleLogout}>
                   Logout
                 </DropdownItem>
               </DropdownMenu>
-            </UncontrolledDropdown> : 
+            </UncontrolledDropdown> :
             <NavbarText>
               <a href="/login">Login</a>  |  <a href="/signup">Signup</a>
               {/* <NavLink href="/search/">Login</NavLink><NavLink href="/search/">Signup</NavLink> */}

@@ -2,9 +2,9 @@ import React from "react";
 import { Jumbotron, Container } from 'reactstrap';
 import Navigation from "../components/Navigation"
 
-function Welcome() {
+function Welcome(props) {
     return <>
-        <Navigation />
+        <Navigation user={props.user} />
         <Jumbotron fluid>
             <Container fluid>
                 <h1 className="display-3">Welcome Page</h1>

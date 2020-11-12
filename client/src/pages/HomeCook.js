@@ -6,7 +6,7 @@ import RecipeDisplay from "../components/RecipeDisplay";
 import axios from "axios"
 import ProfileDisplay from "../components/ProfileDisplay";
 
-function HomeCook() {
+function HomeCook(props) {
 
     const [thisHomecook, setThisHomecook] = useState({});
     const [theseRecipes, setTheseRecipes] = useState([]);
@@ -35,7 +35,7 @@ function HomeCook() {
 
 
     return <>
-        <Navigation />
+        <Navigation user={props.user}/>
         <ProfileDisplay person={thisHomecook} recipes={theseRecipes} />
     </>
 }
