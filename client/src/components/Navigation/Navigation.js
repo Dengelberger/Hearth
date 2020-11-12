@@ -25,7 +25,7 @@ const Navigation = (props) => {
   const handleLogout = () => {
     axios.post("/api/logout").then(res => {
       console.log(res.data)
-      // window.location.href = "/browse"
+      window.location.href = "/"
     }).catch(err => { console.log(err) })
   }
 

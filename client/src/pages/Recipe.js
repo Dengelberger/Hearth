@@ -7,7 +7,17 @@ import axios from "axios"
 
 function Recipe(props) {
 
-    const [thisRecipe, setThisRecipe] = useState();
+    const [thisRecipe, setThisRecipe] = useState({
+        _id:"",
+        category: "",
+        home_cook_id: "",
+        ingredients: [],
+        instructions: [],
+        main_image: "",
+        title: "",
+        second_images: [],
+        memories: []
+    });
 
     let { id } = useParams();
 
@@ -23,7 +33,7 @@ function Recipe(props) {
 
     return <>
         <Navigation user={props.user}/>
-        <RecipeDisplay  recipe={thisRecipe}/>
+        <RecipeDisplay user={props.user} key={thisRecipe._id} recipe={thisRecipe}/>
     </>
 }
 

@@ -133,7 +133,7 @@ function Builder(props) {
 
     return <>
         <Navigation user={props.user}/>
-        <Container>
+        {props.user? <Container>
             <h1>Recipe Builder</h1>
             <h4>Homecook:</h4>
             <Input onChange={handleSelect} type="select" name="select" id="homecookSelect">
@@ -209,7 +209,11 @@ function Builder(props) {
                     <Button type="submit">SUBMIT</Button>
                 </Form>
             </Collapse>
-        </Container>
+        </Container> :
+        <Container>
+            <br/>
+            <h2>You have to be <a href="/login">logged in</a> to build a recipe!</h2>
+        </Container>}
     </>;
 }
 
