@@ -9,7 +9,7 @@ import axios from "axios";
 require('dotenv').config();
 
 
-function Builder() {
+function Builder(props) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [instructionCount, setInstructionCount] = useState(1)
