@@ -8,10 +8,10 @@ const memory = require("../controllers/MemoryController");
 
 // HOME COOK ROUTES:
 
-router.route("/api/homeCook")
+router.route("/api/homecook")
   .post(homeCook.create)
   .get(homeCook.findAll)
-router.route("/api/homeCook/:id")
+router.route("/api/homecook/:id")
   .get(homeCook.findById) //BY ID
   .put(homeCook.update)  //BY ID
   .delete(homeCook.remove);  //BY ID

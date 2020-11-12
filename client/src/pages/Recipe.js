@@ -7,7 +7,7 @@ import axios from "axios"
 
 function Recipe() {
 
-    const [thisRecipe, setThisRecipe] = useState({});
+    const [thisRecipe, setThisRecipe] = useState();
 
     let { id } = useParams();
 
@@ -20,9 +20,6 @@ function Recipe() {
         }).catch(err => { console.log(err) });
 
     }, []);
-
-
-
 
     return <>
         <Navigation />
