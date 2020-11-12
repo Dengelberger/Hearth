@@ -10,8 +10,8 @@ import axios from "axios"
 import HomeCook from './pages/HomeCook';
 
 function App() {
-  const [isUser, setIsUser] = useState(false);
-  const [userInfo, setUserInfo] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
 
   useEffect(() => {
@@ -21,51 +21,43 @@ function App() {
   const getUser = () => {
     axios.get('/api/user').then(response => {
       console.log('Get user response: ')
-      console.log(response.data)
+      console.log(response)
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ')
 
-        // this.setState({
-        //   loggedIn: true,
-        //   username: response.data.user.username
-        // })
+        setLoggedIn(true);
+        setUserInfo(response.data.user)
+
       } else {
         console.log('Get user: no user');
-        // this.setState({
-        //   loggedIn: false,
-        //   username: null
-        // })
+        
+        setLoggedIn(false);
+        setUserInfo(null)
       }
     })
   }
-
-
-
-  
-
-
   return <BrowserRouter>
     <Switch>
       <Route path="/login">
-        <Login />
+        <Login user={userInfo} />
       </Route>
       <Route path="/signup">
-        <Signup />
+        <Signup user={userInfo}  />
       </Route>
       <Route path="/browse">
-        <Search />
+        <Search user={userInfo}  />
       </Route>
       <Route path="/recipe/:id">
-        <Recipe />
+        <Recipe user={userInfo}  />
       </Route>
       <Route path="/builder">
-        <Builder />
+        <Builder user={userInfo} />
       </Route>
       <Route path="/homecook/:id">
-        <HomeCook />
+        <HomeCook user={userInfo} />
       </Route>
       <Route path="/">
-        <Welcome />
+        <Welcome user={userInfo} />
       </Route>
     </Switch>
   </BrowserRouter>;

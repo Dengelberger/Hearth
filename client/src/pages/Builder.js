@@ -8,7 +8,7 @@ import axios from "axios";
 require('dotenv').config();
 
 
-function Builder() {
+function Builder(props) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [instructionCount, setInstructionCount] = useState(1)
@@ -132,7 +132,7 @@ function Builder() {
     }
 
     return <>
-        <Navigation />
+        <Navigation user={props.user}/>
         <Container>
             <h1>Recipe Builder</h1>
             <h4>Homecook:</h4>

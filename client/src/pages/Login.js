@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import Navigation from "../components/Navigation"
 import axios from "axios";
 
-function Login() {
+function Login(props) {
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -14,12 +14,12 @@ function Login() {
         console.log(loginUser)
         axios.post("/api/login", loginUser).then(res => {
             console.log(res.data)
-            // window.location.href = "/browse"
+            window.location.href = "/browse"
         }).catch(err => { console.log(err) });
     }
 
     return <>
-        <Navigation />
+        <Navigation user={props.user}/>
         <Container>
             <h1>LOGIN</h1>
             <Form onSubmit={handleLogin}>

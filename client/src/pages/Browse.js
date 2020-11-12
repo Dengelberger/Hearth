@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { Container, Form, FormGroup, Input, Label } from "reactstrap";
 import Navigation from "../components/Navigation"
 import SearchResults from "../components/SearchResults";
-import masterList from "../recipeExample.json"
 import axios from "axios"
 
-function Browse() {
-    const [publicList, setPublicList] = useState({});
-    const [searchedList, setSearchedList] = useState({});
+function Browse(props) {
+    const [publicList, setPublicList] = useState([]);
+    const [searchedList, setSearchedList] = useState([]);
 
     // const [search, setSearch] = useState("");
     // const [select, setSelect] = useState("All");
@@ -50,7 +49,7 @@ function Browse() {
 
 
     return <>
-        <Navigation />
+        <Navigation user={props.user}/>
         <Container>
             <h1>Search</h1>
             <Form onSubmit={handleSearch}>

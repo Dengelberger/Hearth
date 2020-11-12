@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import RecipeDisplay from "../components/RecipeDisplay";
 import axios from "axios"
 
-function Recipe() {
+function Recipe(props) {
 
     const [thisRecipe, setThisRecipe] = useState();
 
@@ -22,7 +22,7 @@ function Recipe() {
     }, []);
 
     return <>
-        <Navigation />
+        <Navigation user={props.user}/>
         <RecipeDisplay  recipe={thisRecipe}/>
     </>
 }
