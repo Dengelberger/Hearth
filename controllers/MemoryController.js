@@ -3,7 +3,8 @@ const db = require("../models");
 module.exports = {
 	findAll: (req, res) => {
 		db.Memory
-			.find({})
+			.find({ recipe_id : req.params.id })
+			.populate(['created_by'])
 			.then(postData => {
 				res.json(postData);
 			})

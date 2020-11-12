@@ -5,8 +5,11 @@ const MemorySchema = new Schema({
 	created_by: {
 		type: Schema.Types.ObjectId,
 		ref: "User"
-	  },
-	title: String,
+	},
+	recipe_id: {
+		type: Schema.Types.ObjectId,
+		ref: "Recipe"
+	},
 	text: String,
 });
 

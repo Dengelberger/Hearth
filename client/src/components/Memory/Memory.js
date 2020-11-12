@@ -5,12 +5,13 @@ import "./Memory.css"
 const Memory = (props) => {
     return (
         <div className="memoryBody">
-            <p>A hen living on a farm finds some wheat and decides to make bread with it. She asks the other farmyard animals for help planting it, but they refuse. The hen then harvests and mills the wheat into flour before baking it into bread; at each stage she again asks the animals for help and they refuse.</p>
+            {!props.user || props.user._id !== props.memory.created_by._id? "" : <div id={props.memory._id} onClick={props.handleDeleteMemory} className="positionFixed"><p>X</p></div>}
+            <p className="memoryText">{props.memory.text}</p>
             <Row>
                 <div className="imageCrop">
-                    <img className="userImg" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/cp0/p80x80/53476434_10205435509803162_4364216230534447104_n.jpg?_nc_cat=102&ccb=2&_nc_sid=7206a8&_nc_ohc=ldM-bS8YA5UAX-exUDe&_nc_ht=scontent-lga3-1.xx&tp=27&oh=6e729001eb0c29e0bbe8fcd24cd41be1&oe=5FCC0A96"></img>
+                    <img className="userImg" src={props.memory.created_by.picture ? props.memory.created_by.picture : "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/124629502_10207611805009182_7907440485958271956_n.jpg?_nc_cat=108&ccb=2&_nc_sid=730e14&_nc_ohc=h7ILmYj6YrMAX9Mc_ie&_nc_ht=scontent-lga3-1.xx&oh=54cb309066e69b337d982d2f92e5559b&oe=5FD46657"}></img>
                 </div>
-                <p className="marginMe">Kevin Connell</p>
+                <p className="marginMe">{props.memory.created_by.first_name + " " + props.memory.created_by.last_name}</p>
             </Row>
         </div>
     );

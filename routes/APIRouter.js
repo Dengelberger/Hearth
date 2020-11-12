@@ -30,9 +30,8 @@ router.route("/api/recipe/:id")
 
 router.route("/api/memory")
   .post(memory.create)
-  .get(memory.findAll)
   router.route("/api/memory/:id")  
-  .get(memory.findById) //BY ID
+  .get(memory.findAll) //BY recipe ID
   .put(memory.update) //BY ID
   .delete(memory.remove); //BY ID
 

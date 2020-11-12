@@ -13,6 +13,7 @@ module.exports = {
 		console.log("finding by id")
 		db.Recipe
 			.findById({_id : req.params.id})
+			.populate(['home_cook_id'])
 			.then(postData => {
 				res.json(postData)
 			})

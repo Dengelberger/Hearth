@@ -1,50 +1,100 @@
-import React from 'react';
-import { Container, Row } from 'reactstrap';
+import React, {useState, useEffect} from 'react';
+import { Container, Row, FormGroup, Input, Button, Form, Popover, PopoverBody } from 'reactstrap';
 import Memory from '../Memory';
 import "./RecipeDisplay.css"
+import axios from "axios"
 
 const RecipeDisplay = (props) => {
+
+    const [popoverOpen, setPopoverOpen] = useState(false);
+    const [memories, setMemories] = useState([]);
+
+
+    useEffect(() => {
+        renderMemories()
+    }, []);
+
+    const toggle = () => {
+        setPopoverOpen(true)
+        setTimeout(function(){ setPopoverOpen(false); }, 3000);
+    };
+
+    const renderMemories = () => {
+        axios.get(("/api/memory/" + props.recipe._id)).then(res => {
+            console.log("rendering memories...")
+            console.log(res.data)
+            setMemories(res.data);
+        }).catch(err => { console.log(err) });
+    }
+
+    const handleMemorySubmit = (event) => {
+        event.preventDefault()
+        if(event.target.memory.value.length < 20){
+            toggle()
+        } else {
+            let newMemory = {
+                created_by: props.user._id,
+                text: event.target.memory.value,
+                recipe_id: props.recipe._id
+            }
+            axios.post("/api/memory", newMemory).then(res => {
+                console.log(res.data)
+                renderMemories()
+            }).catch(err => { console.log(err) });
+            
+        }
+    }
+    
+    const handleDeleteMemory = (event) => {
+        console.log(event.currentTarget.id)
+        axios.delete(("/api/memory/" + event.currentTarget.id)).then(res => {
+            console.log(res.data)
+            renderMemories()
+        }).catch(err => { console.log(err) });
+    }
+
     return (
         <Container>
             <img className="mainImg" src={props.recipe.main_image}></img>
-            <div>
+            <div className="titleCard">
                 <h2>{props.recipe.title}</h2>
                 <Row>
                     <div className="imageCropBig">
-                        <img className="userImg" src="https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-1/p240x240/14242478_10207434415158481_4224930884287482542_o.jpg?_nc_cat=109&ccb=2&_nc_sid=7206a8&_nc_ohc=DkAMM8VxWn4AX-cEXXI&_nc_ht=scontent-lga3-1.xx&tp=6&oh=d0e593593fd4bf4713334f275d9578de&oe=5FCF95AF"></img>
+                        <img className="userImg" src={props.recipe.home_cook_id.picture}></img>
                     </div>
-                    <p><a href="/homecook/{homecookID}">Karin Stubbs</a></p>
-
+                    <a className="homecookLink" href={"/homecook/" + props.recipe.home_cook_id._id}>{props.recipe.home_cook_id.name}</a>
                 </Row>
-                <Row>
-                    <p>added by </p>
-                    <div className="imageCrop">
-                        <img className="userImg" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/cp0/p80x80/53476434_10205435509803162_4364216230534447104_n.jpg?_nc_cat=102&ccb=2&_nc_sid=7206a8&_nc_ohc=ldM-bS8YA5UAX-exUDe&_nc_ht=scontent-lga3-1.xx&tp=27&oh=6e729001eb0c29e0bbe8fcd24cd41be1&oe=5FCC0A96"></img>
-                    </div>
-                    <p>Kevin Connell</p>
-                </Row>
-
             </div>
             <h4>Ingredients</h4>
+            <hr />
             <ul>
                 {props.recipe.ingredients.map(item => <li>{item}</li>)}
             </ul>
             <h4>Directions</h4>
+            <hr />
             <ol>
                 {props.recipe.instructions.map(item => <li>{item}</li>)}
             </ol>
             <h4>Memories</h4>
-            <div className="memoryBody">
-                <p>A hen living on a farm finds some wheat and decides to make bread with it. She asks the other farmyard animals for help planting it, but they refuse. The hen then harvests and mills the wheat into flour before baking it into bread; at each stage she again asks the animals for help and they refuse.</p>
-                <Row>
-                    <div className="imageCrop">
-                        <img className="userImg" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/cp0/p80x80/53476434_10205435509803162_4364216230534447104_n.jpg?_nc_cat=102&ccb=2&_nc_sid=7206a8&_nc_ohc=ldM-bS8YA5UAX-exUDe&_nc_ht=scontent-lga3-1.xx&tp=27&oh=6e729001eb0c29e0bbe8fcd24cd41be1&oe=5FCC0A96"></img>
-                    </div>
-                    <p className="marginMe">Kevin Connell</p>
-                </Row>
-            </div>
-            <Memory />
+            <hr />
+            {memories.map(item => <Memory handleDeleteMemory={handleDeleteMemory} memory={item} user={props.user} />)}
+            <br />
+            {props.user ? <div>
+            <h4>Add Memory:</h4>
+            <hr />
+            <Form onSubmit={handleMemorySubmit}>
+                <FormGroup>
+                    <Input type="textarea" name="memory" id="memoryInput" />
+                </FormGroup>
+                <Popover placement="bottom" isOpen={popoverOpen} target="memoryInput" toggle={toggle}>
+                    <PopoverBody>Memories need to be at least 20 characters!</PopoverBody>
+                </Popover>
+                <Button type="submit">Submit</Button>
+            </Form>
+            </div> : <p><a href="/login">Log in</a> to add a memory!</p>}
 
+            <br />
+            <br />
 
         </Container>
     );
