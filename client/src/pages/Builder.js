@@ -33,10 +33,10 @@ function Builder(props) {
     const handleSelect = (event) => {
         console.log(event.target.value);
         if (event.target.value === "Add a Homecook") {
-            setIsOpen(true);
+            setIsOpen(false);
         } else {
             setHomeCookId(event.target.value);
-            setIsOpen(false);
+            setIsOpen(true);
         }
     }
 
@@ -152,7 +152,7 @@ function Builder(props) {
                 {homeCookList.map(item => <option value={item._id}>{item.name}</option>  )}  
                 <option>Add a Homecook</option>
             </Input>
-            <Collapse isOpen={isOpen}>
+            <Collapse isOpen={!isOpen}>
                 <Form onSubmit={handleCookAdd}>
                     <FormGroup>
                         <Label for="name">Full Name:</Label>
@@ -166,12 +166,11 @@ function Builder(props) {
                     <img style={{ width: "150px" }} id="homecookPicture" name="preview" src={cookPicture}></img>
                     <div>
                         <Input onChange={handlePictureChange} type="file" name="homecookPicture" id="cookPicture" />
-                        <Button onClick={handleUpload} name="homecookPicture" type="button">Upload</Button>
                     </div>
                     <Button type="submit">Submit</Button>
                 </Form>
             </Collapse>
-            <Collapse isOpen={!isOpen}>
+            <Collapse isOpen={isOpen}>
                 <Form onSubmit={handleRecipeAdd}>
                     <FormGroup>
                         <Label for="title">Recipe Title:</Label>
