@@ -1,4 +1,5 @@
-import React, { useState,  } from "react";
+
+import React, { useEffect, useState } from "react";
 import { Collapse } from "reactstrap";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import Navigation from "../components/Navigation"
@@ -8,22 +9,33 @@ import axios from "axios";
 require('dotenv').config();
 
 
-function Builder(props) {
+function Builder() {
 
     const [isOpen, setIsOpen] = useState(false);
     const [instructionCount, setInstructionCount] = useState(1)
     const [instructionArr, setInstructionArr] = useState([0]);
     const [selectedFile, setSelectedFile] = useState();
+    const [homeCookList, setHomeCookList] = useState([]);
+    const [homeCookId, setHomeCookId] = useState();
     const [cookPicture, setCookPicture] = useState("https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg")
     const [mainPicture, setMainPicture] = useState("https://via.placeholder.com/350x150")
     const [secondPicture, setSecondPicture] = useState("https://via.placeholder.com/150x150")
     const [thirdPicture, setThirdPicture] = useState("https://via.placeholder.com/150x150")
 
+    useEffect( () => {
+        axios.get("/api/homecook").then(res => {
+            console.log(res.data)
+            setHomeCookList(res.data)
+        }).catch(err => { console.log(err) });
+    },[]
+    )
 
     const handleSelect = (event) => {
+        console.log(event.target.value);
         if (event.target.value === "Add a Homecook") {
             setIsOpen(true);
         } else {
+            setHomeCookId(event.target.value);
             setIsOpen(false);
         }
     }
@@ -35,10 +47,9 @@ function Builder(props) {
         axios.post("/api/homecook", newHomecook).then(res => {
             console.log(res)
         }).catch(err => { console.log(err) });
-
-        
+   
     }
-
+    
     const handleRecipeAdd = (event) => {
         event.preventDefault();
         let instructions = [];
@@ -50,8 +61,8 @@ function Builder(props) {
         let recipePictures = []
         let allRecipePictures = document.querySelectorAll(".recipePicture")
         allRecipePictures.forEach(item => recipePictures.push(item.src))
-
-        let newRecipe = { title: event.target.title.value, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures }
+        
+        let newRecipe = { title: event.target.title.value, home_cook_id: homeCookId, catagory: event.target.catagory.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures }
         console.log(newRecipe)
         axios.post("/api/recipe", newRecipe).then(res => {
             console.log(res)
@@ -132,14 +143,13 @@ function Builder(props) {
     }
 
     return <>
+      
         <Navigation user={props.user}/>
         {props.user? <Container>
             <h1>Recipe Builder</h1>
             <h4>Homecook:</h4>
             <Input onChange={handleSelect} type="select" name="select" id="homecookSelect">
-                <option>Karin Stubbs</option>
-                <option>Auntie Polly</option>
-                <option>Keith Jones</option>
+                {homeCookList.map(item => <option value={item._id}>{item.name}</option>  )}  
                 <option>Add a Homecook</option>
             </Input>
             <Collapse isOpen={isOpen}>
