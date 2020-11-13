@@ -7,6 +7,7 @@ import InstructionForm from "../components/InstructionForm"
 import { FormText } from "reactstrap";
 import axios from "axios";
 require('dotenv').config();
+import "./Builder.css"
 
 
 function Builder(props) {
@@ -148,12 +149,14 @@ function Builder(props) {
         {props.user? <Container>
             <h1>Recipe Builder</h1>
             <h4>Homecook:</h4>
-            <Input onChange={handleSelect} type="select" name="select" id="homecookSelect">
-                {homeCookList.map(item => <option value={item._id}>{item.name}</option>  )}  
-                <option>Add a Homecook</option>
-            </Input>
+            <div className="selectCook">
+                <Input onChange={handleSelect} type="select" name="select" id="homecookSelect">
+                    {homeCookList.map(item => <option value={item._id}>{item.name}</option>  )}  
+                    <option>Add a Homecook</option>
+                </Input>
+            </div>
             <Collapse isOpen={!isOpen}>
-                <Form onSubmit={handleCookAdd}>
+                <Form className="addCookForm" onSubmit={handleCookAdd}>
                     <FormGroup>
                         <Label for="name">Full Name:</Label>
                         <Input type="text" name="name" id="cookName" placeholder="Full Name" />
@@ -163,9 +166,11 @@ function Builder(props) {
                         <Input type="textarea" name="bio" id="cookBio" />
                     </FormGroup>
                     <div>Picture</div>
-                    <img style={{ width: "150px" }} id="homecookPicture" name="preview" src={cookPicture}></img>
+                    <div className="homeCookCropBig">
+                        <img className="homeCookImg" id="homecookPicture" name="preview" src={cookPicture}></img>
+                    </div>
                     <div>
-                        <Input onChange={handlePictureChange} type="file" name="homecookPicture" id="cookPicture" />
+                        <Input className="homeCookInput" onChange={handlePictureChange} type="file" name="homecookPicture" id="cookPicture" />
                     </div>
                     <Button type="submit">Submit</Button>
                 </Form>
@@ -218,6 +223,8 @@ function Builder(props) {
                     <Button type="submit">SUBMIT</Button>
                 </Form>
             </Collapse>
+            <br/>
+            <br/>
         </Container> :
         <Container>
             <br/>
