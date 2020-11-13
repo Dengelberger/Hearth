@@ -22,7 +22,7 @@ const RecipeDisplay = (props) => {
     const renderMemories = () => {
         axios.get(("/api/memory/" + props.recipe._id)).then(res => {
             console.log("rendering memories...")
-            console.log(res.data)
+            console.log(res)
             setMemories(res.data);
         }).catch(err => { console.log(err) });
     }
