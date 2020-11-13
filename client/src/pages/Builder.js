@@ -20,8 +20,8 @@ function Builder(props) {
     const [homeCookId, setHomeCookId] = useState();
     const [cookPicture, setCookPicture] = useState("https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg")
     const [mainPicture, setMainPicture] = useState("https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/124672766_10207612687111234_3394486550191593811_n.jpg?_nc_cat=100&ccb=2&_nc_sid=730e14&_nc_ohc=7Gl7ULB1hnoAX9uAtIS&_nc_ht=scontent-lga3-1.xx&oh=ff9df2bca92df8570f1cdb3dcd5db892&oe=5FD44839")
-    const [secondPicture, setSecondPicture] = useState("https://via.placeholder.com/150x150")
-    const [thirdPicture, setThirdPicture] = useState("https://via.placeholder.com/150x150")
+    // const [secondPicture, setSecondPicture] = useState("https://via.placeholder.com/150x150")
+    // const [thirdPicture, setThirdPicture] = useState("https://via.placeholder.com/150x150")
 
     useEffect( () => {
         axios.get("/api/homecook").then(res => {
@@ -59,11 +59,11 @@ function Builder(props) {
 
         let ingredients = (event.target.ingredients.value).split("\n")
 
-        let recipePictures = []
-        let allRecipePictures = document.querySelectorAll(".recipePicture")
-        allRecipePictures.forEach(item => recipePictures.push(item.src))
+        // let recipePictures = []
+        // let allRecipePictures = document.querySelectorAll(".recipePicture")
+        // allRecipePictures.forEach(item => recipePictures.push(item.src))
         
-        let newRecipe = { title: event.target.title.value, home_cook_id: homeCookId, category: event.target.category.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, second_images: recipePictures }
+        let newRecipe = { title: event.target.title.value, home_cook_id: homeCookId, category: event.target.category.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions }
         console.log(newRecipe)
         axios.post("/api/recipe", newRecipe).then(res => {
             console.log(res)
@@ -127,12 +127,12 @@ function Builder(props) {
                     case "mainPicture":
                         setMainPicture(res.data.url)
                         break;
-                    case "secondPicture":
-                        setSecondPicture(res.data.url)
-                        break;
-                    case "thirdPicture":
-                        setThirdPicture(res.data.url)
-                        break;
+                    // case "secondPicture":
+                    //     setSecondPicture(res.data.url)
+                    //     break;
+                    // case "thirdPicture":
+                    //     setThirdPicture(res.data.url)
+                    //     break;
     
                     default:
                         break;
