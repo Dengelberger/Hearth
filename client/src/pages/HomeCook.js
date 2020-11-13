@@ -22,7 +22,7 @@ function HomeCook(props) {
             axios.get("/api/recipe").then(res => {
                 console.log("All recipes DATA:")
                 console.log(res.data);
-                let recipes = res.data.filter(item => item.home_cook_id === id)
+                let recipes = res.data.filter(item => item.home_cook_id._id === id)
                 console.log("Filtered:")
                 console.log(recipes);
                 setTheseRecipes(recipes);
