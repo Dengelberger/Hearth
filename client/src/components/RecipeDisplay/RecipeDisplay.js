@@ -38,6 +38,7 @@ const RecipeDisplay = (props) => {
             }
             axios.post("/api/memory", newMemory).then(res => {
                 console.log(res.data)
+                event.target.memory.value = ""
                 renderMemories()
             }).catch(err => { console.log(err) });
             

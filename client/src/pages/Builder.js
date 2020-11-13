@@ -66,7 +66,8 @@ function Builder(props) {
         let newRecipe = { title: event.target.title.value, home_cook_id: homeCookId, category: event.target.category.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions }
         console.log(newRecipe)
         axios.post("/api/recipe", newRecipe).then(res => {
-            console.log(res)
+            console.log(res.data._id)
+            window.location.href=("/recipe/" + res.data._id)
         }).catch(err => { console.log(err) });
 
 
@@ -87,25 +88,6 @@ function Builder(props) {
         console.log(instructionArr);
         setInstructionCount(instructionCount + 1)
 
-    }
-
-    const handleUpload = async (event) => {
-        event.preventDefault();
-
-        let pictureid = event.target.name
-
-        if (!selectedFile) {
-            return
-        } else {
-            console.log(selectedFile)
-            axios.post("/api/upload", { data: selectedFile }).then(res => {
-                console.log(res.data.url)
-                if (pictureid === "homecookPicture") {
-                    setCookPicture(res.data.url)
-                }
-
-            }).catch(err => { console.log(err) });
-        }
     }
 
     const handlePictureChange = async (event) => {
@@ -195,7 +177,7 @@ function Builder(props) {
                             <option>Breakfast</option>
                             <option>Lunch</option>
                             <option>Dinner</option>
-                            <option>Appitizer</option>
+                            <option>Appetizer</option>
                             <option>Dessert</option>
                         </Input>
                     </FormGroup>
