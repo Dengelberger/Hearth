@@ -1,0 +1,80 @@
+.addCookForm {
+    color: white;
+    background-color: lightslategray;
+    padding: 0px 20px 20px 20px;
+    border-radius: 0px 25px 25px 25px;
+    position: relative;
+}
+
+.buttonDiv{
+    display: flex;
+    justify-content: flex-end  
+}
+
+.remove{
+    background-color: rgb(198, 71, 71);
+    padding: 4px 0px 4px 4px;
+    border-radius: 10px 0px 0px 10px;
+    cursor: pointer;
+}
+
+.slash{
+    padding: 4px 8px 4px 8px;
+    background-image: linear-gradient(to right, rgb(198, 71, 71) , rgb(60, 138, 60));
+}
+
+.add{
+    background-color: rgb(60, 138, 60);
+    padding: 4px 4px 4px 0px;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
+
+}
+
+.selectCook {
+    color: white;
+    background-color: lightslategray;
+    padding: 15px;
+    border-radius: 25px 25px 0px 0px;
+    width: 250px;
+}
+
+.homeCookCropBig {
+    margin-left: 22px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+.homeCookImg {
+  display: inline;
+  margin: 0 auto;
+  margin-left: auto;
+  height: 100%;
+  width: auto;
+}
+.homeCookInput {
+    margin-bottom: 25px;
+}
+
+.foodCrop {
+    margin-left: auto;
+    margin-bottom: 10px;
+    margin-right: auto;
+    width: 325px;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px 25px 0px 0px;
+}
+.foodImg {
+  display: inline;
+  margin-top: -25%;
+  height: auto;
+  width: 100%;
+}
