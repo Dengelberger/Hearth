@@ -65,7 +65,7 @@ function Browse(props) {
                     <option>Breakfast</option>
                     <option>Lunch</option>
                     <option>Dinner</option>
-                    <option>Appitizer</option>
+                    <option>Appetizer</option>
                     <option>Dessert</option>
                 </Input>
             </Form>
