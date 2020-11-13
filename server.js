@@ -61,7 +61,7 @@ app.post('/api/upload', async (req, res) => {
   try {
     const fileStr = req.body.data;
 
-    const uploadedResponse = await cloudinary.uploader.upload(fileStr, { folder: "Hearth/" })
+    const uploadedResponse = await cloudinary.uploader.upload(fileStr, { folder: "hearth/" })
     res.json(uploadedResponse)
   } catch (error) {
     console.error(error)
