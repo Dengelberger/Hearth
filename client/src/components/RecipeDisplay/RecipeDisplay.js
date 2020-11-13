@@ -22,6 +22,7 @@ const RecipeDisplay = (props) => {
     const renderMemories = () => {
         axios.get(("/api/memory/" + props.recipe._id)).then(res => {
             console.log("rendering memories...")
+            console.log(res.data)
             setMemories(res.data);
         }).catch(err => { console.log(err) });
     }
@@ -78,7 +79,7 @@ const RecipeDisplay = (props) => {
             {!memories || memories.length === 0 ? "" : <div><h4>Memories</h4>
             <hr />
             </div>}
-            {/* {memories.map(item => <Memory handleDeleteMemory={handleDeleteMemory} memory={item} user={props.user} />)} */}
+            {memories.map(item => <Memory handleDeleteMemory={handleDeleteMemory} memory={item} user={props.user} />)}
             <br />
             {props.user ? <div>
             <h4>Add Memory:</h4>
