@@ -1,16 +1,27 @@
 import React from "react";
-import { Jumbotron, Container } from 'reactstrap';
+import { Jumbotron, Container, Col, Row } from 'reactstrap';
 import Navigation from "../components/Navigation"
+import WelcomeJumbotron from "../components/WelcomeJumbotron";
+import Poem from "../components/Poem";
+import WelcomeMessage from "../components/WelcomeMessage";
+import "./welcome.css";
 
 function Welcome(props) {
     return <>
         <Navigation user={props.user} />
-        <Jumbotron fluid>
+        <main class="welcomePage">
+            <WelcomeJumbotron />
             <Container fluid>
-                <h1 className="display-3">Welcome Page</h1>
-                <p className="lead">This is generic welcome text for our welcome page to be changed into something more useful later</p>
+                <Row>
+                    <Col sm="6" id="messageBox">
+                        <WelcomeMessage />
+                    </Col>
+                    <Col sm="6" id="poembox">
+                        <Poem />
+                    </Col>
+                </Row>
             </Container>
-        </Jumbotron>
+        </main>
     </>;
 }
 

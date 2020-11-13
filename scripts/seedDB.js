@@ -7,13 +7,9 @@ mongoose.connect(
 
 const userSeeder = [
   {
-    email: "Deege",
-    password: "mysecretpw1234",
     first_name: "Donna",
     last_name: "Engelberger",
-    picture: 'http://res.cloudinary.com/desmvec4u/image/upload/v1605029781/IMG_20201107_080210487.jpg',
-    homecooks: Array,
-    favorited: Array,
+    picture: 'http://res.cloudinary.com/desmvec4u/image/upload/v1605029781/IMG_20201107_080210487.jpg'
   },
   {
     first_name: "Kevin",
