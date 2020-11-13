@@ -6,8 +6,10 @@ import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
 import Recipe from "./pages/Recipe";
 import Builder from "./pages/Builder";
-import axios from "axios"
 import HomeCook from './pages/HomeCook';
+import UserPage from './pages/UserPage';
+import axios from "axios"
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -55,6 +57,9 @@ function App() {
       </Route>
       <Route path="/homecook/:id">
         <HomeCook user={userInfo} />
+      </Route>
+      <Route path="/user">
+        <UserPage user={userInfo} />
       </Route>
       <Route path="/">
         <Welcome user={userInfo} />

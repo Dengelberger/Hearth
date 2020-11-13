@@ -1,11 +1,10 @@
 .search {
-    padding-top: 8px;
-    padding-bottom: 5px;
-    border-bottom: solid 1px;
+    border-bottom: solid 1px lightslategray;
+    padding: 10px 0px 10px 7px;
 }
 
 .search:hover {
-    background-color: lightcyan;
+    background-color: rgba(255, 235, 200, 0.5);
 }
 
 .picture {
@@ -13,4 +12,15 @@
     width: 220px;
     height: 150px;
     object-fit: cover;
+}
+
+.category {
+    background-color: lightpink;
+    display: inline;
+    padding: 3px 14px 5px 14px;
+    border-radius: 15px;
+}
+
+.author {
+    margin-bottom: 18px;
 }

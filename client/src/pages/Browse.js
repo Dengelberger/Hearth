@@ -3,10 +3,11 @@ import { Container, Form, FormGroup, Input, Label } from "reactstrap";
 import Navigation from "../components/Navigation"
 import SearchResults from "../components/SearchResults";
 import axios from "axios"
+import "./Browse.css"
 
 function Browse(props) {
     const [publicList, setPublicList] = useState([]);
-    const [searchedList, setSearchedList] = useState([]);
+    const [searchedList, setSearchedList] = useState([{_id:"3", home_cook_id: {name: "Fran"}}]);
 
     // const [search, setSearch] = useState("");
     // const [select, setSelect] = useState("All");
@@ -16,49 +17,48 @@ function Browse(props) {
             console.log("Recipe DATA:")
             console.log(res.data);
             setPublicList(res.data);
+            setSearchedList(res.data);
         }).catch(err => { console.log(err) });
     }, [])
 
-    const publicOnly = (list) => {
-        let publicList = list.filter(item => item.is_private === false);
-        setPublicList(publicList)
-    } 
-
-    const handleSearch = (event) => {
-        event.preventDefault();
+    const handleSearch = () => {
         let searchTerm = document.getElementById('searchInput').value;
         let selectTerm = document.getElementById('selectInput').value;
         console.log(searchTerm);
         console.log(selectTerm);
-        let newSearch = publicList.filter(item => item.title.toLowerCase().includes((searchTerm).toLowerCase()))
-        // || item.homecook.toLowerCase().includes((searchTerm).toLowerCase())
+        let newSearch = publicList.filter(item => item.title.toLowerCase().includes((searchTerm).toLowerCase()) || item.home_cook_id.name.toLowerCase().includes((searchTerm).toLowerCase()))
         if (selectTerm !== "All") {
-            newSearch = newSearch.filter(item => item.catagory === selectTerm);
+            newSearch = newSearch.filter(item => item.category === selectTerm);
         };
+        console.log("this is the new search")
+        console.log("-----------------------")
+        console.log(newSearch)
         setSearchedList(newSearch);
-        axios.get("/api/homecook", newSearch).then(res => {
-            console.log(res)
-        }).catch(err => { console.log(err) });
-
+        console.log("this is SearchedList")
+        console.log("-----------------------")
+        console.log(searchedList)
     }
 
     const handleRecipeClick = (event) => {
         console.log(event.currentTarget.id)
-        location.href = ('/recipe/'+event.currentTarget.id);
+        location.href = ('/recipe/' + event.currentTarget.id);
+    }
+
+    const stopDefault = (event) => {
+        event.preventDefault()
     }
 
 
     return <>
-        <Navigation user={props.user}/>
+        <Navigation user={props.user} />
         <Container>
             <h1>Search</h1>
-            <Form onSubmit={handleSearch}>
-                <Label for="exampleSearch">Search</Label>
+            <Form className="searchHeader" onSubmit={stopDefault}>
                 <Input onChange={handleSearch}
                     type="text"
                     name="search"
                     id="searchInput"
-                    placeholder="search placeholder"
+                    placeholder="search..."
                 />
                 <Input onChange={handleSearch} type="select" name="select" id="selectInput">
                     <option>All</option>
@@ -69,7 +69,10 @@ function Browse(props) {
                     <option>Dessert</option>
                 </Input>
             </Form>
-            {searchedList.length > 0 ? searchedList.map(item => <SearchResults id={item._id} picture={item.main_picture} title={item.title} homecook={item.homecook} category={item.category} handleRecipeClick={handleRecipeClick}/>): <p>no search results</p>}
+            <div className="finishing">
+                {searchedList.length > 0 ? searchedList.map(item => <SearchResults info={item} handleRecipeClick={handleRecipeClick} />) : <div className="noResultsDiv"><h2>no search results</h2></div>}
+            </div>
+
 
         </Container>
     </>;

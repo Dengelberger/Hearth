@@ -47,6 +47,7 @@ function Builder(props) {
         console.log(newHomecook)
         axios.post("/api/homecook", newHomecook).then(res => {
             console.log(res)
+            window.location.reload()
         }).catch(err => { console.log(err) });
    
     }
@@ -63,7 +64,7 @@ function Builder(props) {
         // let allRecipePictures = document.querySelectorAll(".recipePicture")
         // allRecipePictures.forEach(item => recipePictures.push(item.src))
         
-        let newRecipe = { title: event.target.title.value, home_cook_id: homeCookId, category: event.target.category.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions }
+        let newRecipe = { title: event.target.title.value, home_cook_id: homeCookId, category: event.target.category.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, created_by: props.user._id }
         console.log(newRecipe)
         axios.post("/api/recipe", newRecipe).then(res => {
             console.log(res.data._id)

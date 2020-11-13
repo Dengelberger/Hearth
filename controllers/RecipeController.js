@@ -4,6 +4,7 @@ module.exports = {
 	findAll: (req, res) => {
 		db.Recipe
 			.find({})
+			.populate(['home_cook_id'])
 			.then(postData => {
 				res.json(postData);
 			})

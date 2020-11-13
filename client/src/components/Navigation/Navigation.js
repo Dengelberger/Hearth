@@ -29,8 +29,6 @@ const Navigation = (props) => {
     }).catch(err => { console.log(err) })
   }
 
-
-
   return (
     <div>
       <Navbar color="light" light expand="md">
@@ -51,13 +49,10 @@ const Navigation = (props) => {
                 {props.user.first_name}
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
+                <DropdownItem href="/user">
                   My Profile
               </DropdownItem>
-                <DropdownItem>
-                  Favorites
-              </DropdownItem>
-                <DropdownItem>
+                <DropdownItem href="/browse">
                   Add Recipe +
               </DropdownItem>
                 <DropdownItem divider />

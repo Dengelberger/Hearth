@@ -14,7 +14,7 @@ function Login(props) {
         console.log(loginUser)
         axios.post("/api/login", loginUser).then(res => {
             console.log(res.data)
-            window.location.href = "/browse"
+            window.location.href = "/user"
         }).catch(err => { console.log(err) });
     }
 
