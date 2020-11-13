@@ -68,16 +68,17 @@ const RecipeDisplay = (props) => {
             <h4>Ingredients</h4>
             <hr />
             <ul>
-                {props.recipe.ingredients.map(item => <li>{item}</li>)}
+                {props.recipe.ingredients? props.recipe.ingredients.map(item => <li>{item}</li>) : ""}
             </ul>
             <h4>Directions</h4>
             <hr />
             <ol>
-                {props.recipe.instructions.map(item => <li>{item}</li>)}
+                {props.recipe.instructions? props.recipe.instructions.map(item => <li>{item}</li>): ""}
             </ol>
-            <h4>Memories</h4>
+            {!memories || memories.length === 0 ? "" : <div><h4>Memories</h4>
             <hr />
-            {memories.map(item => <Memory handleDeleteMemory={handleDeleteMemory} memory={item} user={props.user} />)}
+            </div>}
+            {memories? memories.map(item => <Memory handleDeleteMemory={handleDeleteMemory} memory={item} user={props.user} />): ""}
             <br />
             {props.user ? <div>
             <h4>Add Memory:</h4>
