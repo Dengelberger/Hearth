@@ -1,0 +1,109 @@
+.userTop {
+    margin-top: 13px;
+    width: 100%;
+    height: 150px;
+    border-radius: 30px 30px 0px 0px;
+    background-color: lightslategrey;
+    object-fit: cover;
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    padding-bottom: 12px;
+}
+
+.imageCrop {
+    margin-left: 22px;
+    width: 35px;
+    height: 35px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.userCropBig {
+    margin-left: 22px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.marginMe {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.userImg {
+  display: inline;
+  margin: 0 auto;
+  margin-left: auto;
+  height: 100%;
+  width: auto;
+}
+
+.recipeImg {
+    display: inline;
+    margin: 0 auto;
+    
+    width: 100%;
+    height: 100%;
+    width: auto;
+}
+
+.recipeImgContainer {
+    width: 150px;
+    height: 125px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5%;
+    margin-right: 13px;
+}
+
+.recipeTitle {
+    max-width: 150px;
+}
+
+.subTop {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: lightgray;
+}
+
+.recipeHeader {
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.updatePic {
+    max-width: 120px;
+}
+
+.updateText {
+    margin-bottom: 0px;
+    margin-right: 10px;
+}
+
+.recipeRow {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.recipeTile {
+    background-color: lightslategray;
+    min-height: 150px;
+    max-width: 320px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 13px;
+    margin: 10px;
+}
+
+.recipeContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}

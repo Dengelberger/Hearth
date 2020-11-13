@@ -6,14 +6,16 @@ import "./SearchResults.css";
 const SearchResults = (props) => {
 
   return (
-    <Row className="search" id={props.id} key={props.id} onClick={props.handleRecipeClick}>
-        <img className="picture" src={props.picture}></img>
-        <Col>
-        <h2>{props.title}</h2>
-        <h4>by {props.homecook}</h4>
-        <h5>for {props.catagory}</h5>
-        </Col>
-    </Row>
+    <div className="search">
+      <Row id={props.info._id} key={props.info._id} onClick={props.handleRecipeClick}>
+          <img className="picture" src={props.info.main_image}></img>
+          <Col>
+          <h2>{props.info.title}</h2>
+          <h4 className="author">by {props.info.home_cook_id.name}</h4>
+          <h5 className="category">{props.info.category}</h5>
+          </Col>
+      </Row>
+    </div>
   );
 }
 
