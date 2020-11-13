@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useParams } from "react-router-dom"
 import { Container, Row, FormGroup, Input, Button, Form, Popover, PopoverBody } from 'reactstrap';
 import Memory from '../Memory';
 import "./RecipeDisplay.css"
@@ -8,6 +9,8 @@ const RecipeDisplay = (props) => {
 
     const [popoverOpen, setPopoverOpen] = useState(false);
     const [memories, setMemories] = useState([]);
+
+    let { id } = useParams();
 
 
     useEffect(() => {
@@ -20,7 +23,7 @@ const RecipeDisplay = (props) => {
     };
 
     const renderMemories = () => {
-        axios.get(("/api/memory/" + props.recipe._id)).then(res => {
+        axios.get(("/api/memory/" + id)).then(res => {
             console.log("rendering memories...")
             console.log(res.data)
             setMemories(res.data);
