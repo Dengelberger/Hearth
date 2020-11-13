@@ -9,6 +9,7 @@ import Builder from "./pages/Builder";
 import HomeCook from './pages/HomeCook';
 import UserPage from './pages/UserPage';
 import axios from "axios"
+import "./App.css"
 
 
 function App() {
