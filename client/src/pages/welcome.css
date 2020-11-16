@@ -1,18 +1,9 @@
 .welcomePage {
-    background-color:#F8F3EF;
+    background-color:white;
     height: 800px;
 }
-
-.banner {
-    background-color:#F8F3EF;
-}
-
 p {
     padding-left: 20px;
     padding-right: 20px;
 }
 
-.poembox {
-    background-color: #6288A8;
-
-}
