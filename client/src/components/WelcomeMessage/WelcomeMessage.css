@@ -1,7 +1,12 @@
-.welcomeMessage {
-    font-size: 32px;
-    padding-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-    color: #9A4B08;
+
+.messageContainer {
+    margin-top: 13px;
+    padding-top: 12px;
+    width: 100%;
+    height: 30%;
+    border-radius: 30px 30px 30px 30px;
+    background-color: lightslategrey;
+    color: white;
+    font-size: 2rem;
+    padding-bottom: 12px;
 }
