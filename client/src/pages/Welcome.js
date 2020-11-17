@@ -9,7 +9,7 @@ function Welcome(props) {
         <Navigation user={props.user} />
         <main class="welcomePage">
             <Container fluid>
-                <WelcomeMessage />
+                <WelcomeMessage user={props.user}/>
             </Container>
         </main>
     </>;

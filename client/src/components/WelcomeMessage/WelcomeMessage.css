@@ -1,3 +1,10 @@
+.messageHeader {
+    padding-top: 15px;
+    font-size: 45px !important;
+    font-weight: 500;
+    color: #553e2d;
+
+}
 
 .messageContainer {
     margin-top: 13px;
@@ -6,7 +13,60 @@
     height: 30%;
     border-radius: 30px 30px 30px 30px;
     background-color: lightslategrey;
-    color: white;
+    color: #fff9f9;
     font-size: 2rem;
     padding-bottom: 12px;
+}
+
+.poemCol {
+    padding-right: 0px !important;
+}
+
+.poem {
+    border-radius: 30px 0px 0px 30px;
+    background-color: lightslategrey;
+    color: #fff9f9;
+    font-style: italic !important;
+    text-align: center;
+    padding: 25px 0px;
+    margin-bottom: 25px;
+    margin-left: 10px;
+}
+ .tree {
+    width: 110%;
+    margin-left: -15px;
+ }
+
+ .illustration {
+    width: 70%;
+    margin-right: 8px;
+ }
+
+ .illustrationDiv {
+    display: flex;
+    justify-content: center;
+
+ }
+
+.welcomeBlock {
+    text-align: center;
+    color: #553e2d;
+    background-color: #fff3da;
+    border-radius: 30px;
+    padding: 20px 14px;
+    margin-bottom: 25px;
+}
+
+.poemTab {
+    background-color: lightslategray;
+    padding: 20px;
+    width: 150px;
+    border-radius: 30px 0px 0px 0px;
+}
+
+.tabDiv {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+
 }
