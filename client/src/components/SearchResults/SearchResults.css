@@ -1,6 +1,7 @@
 .search {
-    border-bottom: solid 1px lightslategray;
+    border-bottom: solid 3px lightslategray;
     padding: 10px 0px 10px 7px;
+    background-color: white;
 }
 
 .search:hover {
@@ -15,7 +16,8 @@
 }
 
 .category {
-    background-color: lightpink;
+    color: #553e2d;
+    background-color: #f9a6a7;
     display: inline;
     padding: 3px 14px 5px 14px;
     border-radius: 15px;
@@ -23,4 +25,5 @@
 
 .author {
     margin-bottom: 18px;
+    color: #553e2d;
 }

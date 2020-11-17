@@ -14,6 +14,7 @@ import {
   NavbarText
 } from 'reactstrap';
 import axios from 'axios'
+import "./Navigation.css"
 
 const Navigation = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ const Navigation = (props) => {
   return (
     <div>
       <Navbar style={{backgroundColor: '#ffcdcd'}} light expand="md">
-        <NavbarBrand href="/">Hearth</NavbarBrand>
+        <NavbarBrand href="/" style={{color: "#553e2d", fontWeight: "600", marginLeft: "10px"}}>Hearth.</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -45,7 +46,7 @@ const Navigation = (props) => {
           </Nav>
           {props.user ?
             <UncontrolledDropdown inNavbar>
-              <DropdownToggle nav caret>
+              <DropdownToggle nav caret style={{color: "#CF4747"}}>
                 {props.user.first_name}
               </DropdownToggle>
               <DropdownMenu right>

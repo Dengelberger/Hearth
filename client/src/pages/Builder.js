@@ -23,12 +23,12 @@ function Builder(props) {
     // const [secondPicture, setSecondPicture] = useState("https://via.placeholder.com/150x150")
     // const [thirdPicture, setThirdPicture] = useState("https://via.placeholder.com/150x150")
 
-    useEffect( () => {
+    useEffect(() => {
         axios.get("/api/homecook").then(res => {
             console.log(res.data)
             setHomeCookList(res.data)
         }).catch(err => { console.log(err) });
-    },[]
+    }, []
     )
 
     const handleSelect = (event) => {
@@ -49,9 +49,9 @@ function Builder(props) {
             console.log(res)
             window.location.reload()
         }).catch(err => { console.log(err) });
-   
+
     }
-    
+
     const handleRecipeAdd = (event) => {
         event.preventDefault();
         let instructions = [];
@@ -63,12 +63,12 @@ function Builder(props) {
         // let recipePictures = []
         // let allRecipePictures = document.querySelectorAll(".recipePicture")
         // allRecipePictures.forEach(item => recipePictures.push(item.src))
-        
+
         let newRecipe = { title: event.target.title.value, home_cook_id: homeCookId, category: event.target.category.value, main_image: event.target.preview.src, ingredients: ingredients, instructions: instructions, created_by: props.user._id }
         console.log(newRecipe)
         axios.post("/api/recipe", newRecipe).then(res => {
             console.log(res.data._id)
-            window.location.href=("/recipe/" + res.data._id)
+            window.location.href = ("/recipe/" + res.data._id)
         }).catch(err => { console.log(err) });
 
 
@@ -116,25 +116,30 @@ function Builder(props) {
                     // case "thirdPicture":
                     //     setThirdPicture(res.data.url)
                     //     break;
-    
+
                     default:
                         break;
                 }
-    
+
             }).catch(err => { console.log(err) });
         }
 
     }
 
-    return <>
-      
-        <Navigation user={props.user}/>
-        {props.user? <Container>
+    const handleHiddenClick = (event) => {
+        event.preventDefault();
+        document.querySelector("#cookPicture").click()
+    }
+
+    return <main className="mainBackground">
+
+        <Navigation user={props.user} />
+        {props.user ? <Container>
             <h1>Recipe Builder</h1>
             <h4>Homecook:</h4>
             <div className="selectCook">
                 <Input onChange={handleSelect} type="select" name="select" id="homecookSelect">
-                    {homeCookList.map(item => <option value={item._id}>{item.name}</option>  )}  
+                    {homeCookList.map(item => <option value={item._id}>{item.name}</option>)}
                     <option>Add a Homecook</option>
                 </Input>
             </div>
@@ -145,17 +150,22 @@ function Builder(props) {
                         <Input type="text" name="name" id="cookName" placeholder="Full Name" />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="bio">Biography</Label>
+                        <Label for="bio">Biography:</Label>
                         <Input type="textarea" name="bio" id="cookBio" />
                     </FormGroup>
-                    <div>Picture</div>
-                    <div className="homeCookCropBig">
-                        <img className="homeCookImg" id="homecookPicture" name="preview" src={cookPicture}></img>
+                    <div>Picture:</div>
+                    <div className="imgContainer">
+                        <div className="homeCookCropBig">
+                            <img className="homeCookImg" id="homecookPicture" name="preview" src={cookPicture}></img>
+                        </div>
+                        <div className="fakeBtn" onClick={handleHiddenClick}>
+                            <p className="plus">+</p>
+                        </div>
                     </div>
                     <div>
-                        <Input className="homeCookInput" onChange={handlePictureChange} type="file" name="homecookPicture" id="cookPicture" />
+                        <Input style={{ display: "none" }} className="homeCookInput" onChange={handlePictureChange} type="file" name="homecookPicture" id="cookPicture" />
                     </div>
-                    <Button type="submit">Submit</Button>
+                    <h5 className="submitBtn" type="submit">Submit</h5>
                 </Form>
             </Collapse>
             <Collapse isOpen={isOpen}>
@@ -209,14 +219,14 @@ function Builder(props) {
                     <Button type="submit">SUBMIT</Button>
                 </Form>
             </Collapse>
-            <br/>
-            <br/>
+            <br />
+            <br />
         </Container> :
-        <Container>
-            <br/>
-            <h2>You have to be <a href="/login">logged in</a> to build a recipe!</h2>
-        </Container>}
-    </>;
+            <Container>
+                <br />
+                <h2>You have to be <a href="/login">logged in</a> to build a recipe!</h2>
+            </Container>}
+    </main>;
 }
 
 export default Builder;
