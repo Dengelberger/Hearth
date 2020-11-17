@@ -47,9 +47,9 @@
     height: 110px;
     overflow: hidden;
     border-radius: 50%;
-    position: absolute;
+    /* position: absolute;
     bottom: 15px;
-    right: 15px;
+    right: 15px; */
 }
 .homeCookImg {
   display: inline;
@@ -77,4 +77,44 @@
   margin-top: -25%;
   height: auto;
   width: 100%;
+}
+
+.fakeBtn {
+    background-color: #CF4747;
+    font-size: 45px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+
+.plus {
+    margin-top: 10px;
+}
+
+.imgContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.submitBtn {
+    position: absolute;
+    bottom: 15px;
+    right: 22px;
+    border-radius: 25px;
+    background-color: #d7dbac;
+    color: #553e2d;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.submitBtn:hover {
+    background-color: #b7bd6d;
 }

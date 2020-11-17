@@ -49,10 +49,9 @@ function Browse(props) {
     }
 
 
-    return <>
+    return <main className="mainBackground">
         <Navigation user={props.user} />
         <Container>
-            <h1>Search</h1>
             <Form className="searchHeader" onSubmit={stopDefault}>
                 <Input onChange={handleSearch}
                     type="text"
@@ -75,7 +74,7 @@ function Browse(props) {
 
 
         </Container>
-    </>;
+    </main>;
 }
 
 export default Browse;
