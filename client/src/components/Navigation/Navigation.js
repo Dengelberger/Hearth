@@ -31,7 +31,7 @@ const Navigation = (props) => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar style={{backgroundColor: '#ffcdcd'}} light expand="md">
         <NavbarBrand href="/">Hearth</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
