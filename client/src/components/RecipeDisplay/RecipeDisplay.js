@@ -79,6 +79,12 @@ const RecipeDisplay = (props) => {
             <ol>
                 {props.recipe.instructions.map(item => <li>{item}</li>)}
             </ol>
+            <h4>Additional pictures:</h4>
+            <hr />
+            <div>
+            {props.recipe.second_image.map(item => {item})}
+            {props.recipe.third_image.map(item => {item})}
+            </div>
             {!memories || memories.length === 0 ? "" : <div><h4>Memories</h4>
             <hr />
             </div>}
