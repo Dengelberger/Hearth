@@ -5,14 +5,14 @@ import WelcomeMessage from "../components/WelcomeMessage";
 import "./welcome.css";
 
 function Welcome(props) {
-    return <>
+    return <main className="mainBackground">
         <Navigation user={props.user} />
         <main class="welcomePage">
             <Container fluid>
                 <WelcomeMessage user={props.user}/>
             </Container>
         </main>
-    </>;
+    </main>;
 }
 
 export default Welcome;

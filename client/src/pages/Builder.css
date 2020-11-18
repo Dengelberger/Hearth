@@ -8,24 +8,25 @@
 
 .buttonDiv{
     display: flex;
-    justify-content: flex-end  
+    justify-content: center; 
+    margin-bottom: 45px; 
 }
 
 .remove{
-    background-color: rgb(198, 71, 71);
-    padding: 4px 0px 4px 4px;
+    background-color: #CF4747;
+    padding: 4px 0px 4px 8px;
     border-radius: 10px 0px 0px 10px;
     cursor: pointer;
 }
 
 .slash{
     padding: 4px 8px 4px 8px;
-    background-image: linear-gradient(to right, rgb(198, 71, 71) , rgb(60, 138, 60));
+    background-image: linear-gradient(to right, #CF4747 , #b7bd6d);
 }
 
 .add{
-    background-color: rgb(60, 138, 60);
-    padding: 4px 4px 4px 0px;
+    background-color: #b7bd6d;
+    padding: 4px 10px 4px 0px;
     border-radius: 0px 10px 10px 0px;
     cursor: pointer;
 
@@ -63,15 +64,21 @@
 }
 
 .foodCrop {
-    margin-left: auto;
-    margin-bottom: 10px;
-    margin-right: auto;
+    background-color: slategray;
     width: 325px;
     height: 160px;
     position: relative;
     overflow: hidden;
     border-radius: 25px 25px 0px 0px;
 }
+
+@media (max-width: 576px) {
+    .foodCrop {
+        width: 280px;
+        height: 138px;
+    }
+}
+
 .foodImg {
   display: inline;
   margin-top: -25%;
@@ -106,15 +113,22 @@
 
 .submitBtn {
     position: absolute;
-    bottom: 15px;
+    bottom: 22px;
     right: 22px;
     border-radius: 25px;
     background-color: #d7dbac;
     color: #553e2d;
     cursor: pointer;
-    padding: 15px;
+    padding: 10px 15px;
+    border: none;
+    font-size: 18px;
 }
 
 .submitBtn:hover {
     background-color: #b7bd6d;
+}
+
+.builderTextDiv {
+    display: flex;
+    justify-content: center;
 }

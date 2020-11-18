@@ -31,10 +31,10 @@ function Recipe(props) {
 
     }, []);
 
-    return <>
+    return <main className="mainBackground">
         <Navigation user={props.user}/>
         <RecipeDisplay user={props.user} key={thisRecipe._id} recipe={thisRecipe}/>
-    </>
+    </main>
 }
 
 export default Recipe;

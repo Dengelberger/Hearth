@@ -32,8 +32,21 @@
     margin-right: 25px;
     padding: 15px 15px 10px 20px;
     border-radius: 18px;
-    background-color: #ffeaef;
+    background-color: #ffcdcd;
     position: relative;
+    color: #553e2d;
+}
+
+@media (max-width: 576px) {
+    .memoryBody {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+.memoryText {
+    padding: 0px 25px 0px 0px;
+
 }
 
 .positionFixed {

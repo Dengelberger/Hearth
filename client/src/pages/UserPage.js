@@ -5,10 +5,10 @@ import UserProfile from "../components/UserProfile";
 function UserPage(props) {
     
 
-    return <>
+    return <main className="mainBackground">
         <Navigation user={props.user}/>
         {props.user? <UserProfile user={props.user} /> : ""}
-    </>
+    </main>
 }
 
 export default UserPage;

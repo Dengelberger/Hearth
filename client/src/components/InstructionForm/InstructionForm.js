@@ -9,7 +9,7 @@ const InstructionForm = (props) => {
                 <div key={props.number} className="instructionForm">
                     <Label for={"instruction" + props.number}>{props.number}</Label>
                     <div className="spacer"></div>
-                    <Input className="instruct" type="textarea" name={"instruction" + props.number} />
+                    <Input className="instruct" type="textarea" name={"instruction" + props.number} required/>
                 </div>
             </FormGroup>
         </>

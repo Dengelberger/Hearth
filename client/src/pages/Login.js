@@ -18,7 +18,7 @@ function Login(props) {
         }).catch(err => { console.log(err) });
     }
 
-    return <>
+    return <main className="mainBackground">
         <Navigation user={props.user}/>
         <Container>
             <h1>LOGIN</h1>
@@ -34,7 +34,7 @@ function Login(props) {
                 <Button type="submit">Submit</Button>
             </Form>
         </Container>
-    </>;
+    </main>;
 }
 
 export default Login;
