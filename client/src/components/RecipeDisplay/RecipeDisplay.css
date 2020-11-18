@@ -50,3 +50,18 @@
   height: 100%;
   width: auto;
 }
+
+.submitMemDiv{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submitMem {
+    border-radius: 25px;
+    background-color: #d7dbac;
+    color: #553e2d;
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    font-size: 18px;
+}

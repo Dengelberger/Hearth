@@ -67,7 +67,7 @@
     display: flex;
     align-items: center;
     padding: 15px;
-    background-color: lightgray;
+    background-color: #d7dbac;
 }
 
 .recipeHeader {
@@ -105,5 +105,4 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin-bottom: 25px;
 }

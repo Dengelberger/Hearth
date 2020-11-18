@@ -58,7 +58,7 @@ const RecipeDisplay = (props) => {
     }
 
     return (
-        <Container>
+        <Container style={{color: "#553e2d"}}>
             <img className="mainImg" src={props.recipe.main_image}></img>
             <div className="titleCard">
                 <h2>{props.recipe.title}</h2>
@@ -94,7 +94,9 @@ const RecipeDisplay = (props) => {
                 <Popover placement="bottom" isOpen={popoverOpen} target="memoryInput" toggle={toggle}>
                     <PopoverBody>Memories need to be at least 20 characters!</PopoverBody>
                 </Popover>
-                <Button type="submit">Submit</Button>
+                <div className="submitMemDiv">
+                    <button className="submitMem" type="submit">Submit</button>
+                </div>
             </Form>
             </div> : <p><a href="/login">Log in</a> to add a memory!</p>}
 

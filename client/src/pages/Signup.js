@@ -21,7 +21,7 @@ function Signup(props) {
 
 
 
-    return <>
+    return <main className="mainBackground">
         <Navigation user={props.user} />
         <Container>
             <h1>Signup</h1>
@@ -45,7 +45,7 @@ function Signup(props) {
                 <Button type="submit" color="primary">Submit</Button>
             </Form>
         </Container>
-    </>;
+    </main>;
 }
 
 export default Signup;

@@ -34,10 +34,10 @@ function HomeCook(props) {
 
 
 
-    return <>
+    return <main className="mainBackground">
         <Navigation user={props.user}/>
         <ProfileDisplay person={thisHomecook} recipes={theseRecipes} />
-    </>
+    </main>
 }
 
 export default HomeCook;

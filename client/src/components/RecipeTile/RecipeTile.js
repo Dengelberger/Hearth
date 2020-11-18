@@ -7,7 +7,7 @@ const RecipeTile = (props) => {
             <div className="recipeImgContainer"><img className="recipeImg" src={props.picture} /></div>
             <div>
                 <h5 className="recipeTitle">{props.title}</h5>
-                <Button color="danger" id={props.id} onClick={props.handleRecipeClick}>View Recipe</Button>
+                <Button style={{backgroundColor: "#CF4747", border: "none", borderRadius: "15px"}} id={props.id} onClick={props.handleRecipeClick}>View Recipe</Button>
             </div>
         </div>
     );
