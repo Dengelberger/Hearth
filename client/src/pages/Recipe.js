@@ -19,6 +19,9 @@ function Recipe(props) {
         memories: []
     });
 
+    const [loadRecipe, setLoadRecipe] = useState(false)
+
+
     let { id } = useParams();
 
     useEffect(() => {
@@ -27,13 +30,14 @@ function Recipe(props) {
             console.log("Recipe DATA:")
             console.log(res.data);
             setThisRecipe(res.data);
+            setLoadRecipe(true)
         }).catch(err => { console.log(err) });
 
     }, []);
 
     return <main className="mainBackground">
         <Navigation user={props.user}/>
-        {props.user? <RecipeDisplay user={props.user} recipe={thisRecipe}/> : ""}
+        {props.user && loadRecipe ? <RecipeDisplay user={props.user} recipe={thisRecipe}/> : ""}
     </main>
 }
 
