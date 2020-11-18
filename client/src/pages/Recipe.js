@@ -33,7 +33,7 @@ function Recipe(props) {
 
     return <main className="mainBackground">
         <Navigation user={props.user}/>
-        <RecipeDisplay user={props.user} key={thisRecipe._id} recipe={thisRecipe}/>
+        {props.user? <RecipeDisplay user={props.user} recipe={thisRecipe}/> : ""}
     </main>
 }
 
